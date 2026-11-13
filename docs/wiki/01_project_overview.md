@@ -44,7 +44,7 @@ GoogleTest 是 C++ 测试框架，GoogleMock 是与之配套的 Mock 框架。�
 
 ## CMake 目标关系
 
-根构建通过 `BUILD_GMOCK` 控制是否加入 GoogleMock；默认值为 ON。GoogleMock 的 CMake 子项目会把 GoogleTest 加入构建。([CMakeLists.txt:19-35](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/CMakeLists.txt#L19-L35)) ([CMakeLists.txt:11-18](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/gmock/CMakeLists.txt#L11-L18))
+根构建通过 `BUILD_GMOCK` 控制是否加入 GoogleMock；默认值为 ON。GoogleMock 的 CMake 子项目会把 GoogleTest 加入构建。([CMakeLists.txt:19-35](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/CMakeLists.txt#L19-L35)) ([CMakeLists.txt:11-18](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googlemock/CMakeLists.txt#L11-L18))
 
 - `gtest`：核心测试框架库。
 - `gtest_main`：默认测试入口，链接 `gtest`。
