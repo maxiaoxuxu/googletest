@@ -43,7 +43,7 @@
 - PAGE_ID：2/2 正确且唯一
 - AUTOGEN：2/2 配对
 - H1：2/2 各一个
-- Mermaid：2 个图块，Level 0 静态作者规范检查
+- Mermaid：复测副本 2 个图块；另对原始 Wiki 11 页、冒烟测试 2 页和复测页 2 页共 9 个 Mermaid 块做静态审计。发现原始 08 与复测 08 都采用 quoted pipe-edge-label 写法；复测副本已修正。详见 `MERMAID_AUDIT.md`。
 - 源码引用：均固定到同一不可变 commit；行号范围均未超出对应源文件行数
 - 结构错误：0
 
@@ -60,3 +60,10 @@
 - 原有 `docs/wiki/` 11 页及原有两页冒烟测试备份均未覆盖。
 - 本轮新增内容全部位于 `docs/wiki/_plugin_v2_0_3_retest/`。
 - `main` 未写入。
+
+## 后续 Mermaid 审计补充
+
+- 根因定位到插件源规则：`.apm/skills/wiki/references/mermaid_policy.md` 将 `A -->|\"Yes\"| B` 作为边标签正确示例，静态检查未拦截该模式。
+- 本轮只修正 `_plugin_v2_0_3_retest/08_expectations.md`，没有覆盖原始 Wiki，也没有修改插件源仓库。
+- 新增全量静态审计：[`MERMAID_AUDIT.md`](./MERMAID_AUDIT.md)。
+- Mermaid.js/CLI 真实渲染尚未执行；不能将其描述为通过。
