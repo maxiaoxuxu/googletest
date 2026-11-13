@@ -1,0 +1,8 @@
+{
+  "validation_level": 0,
+  "renderer_executed": false,
+  "cli_executed": false,
+  "diagrams_scanned": 2,
+  "invalid_diagrams_detected_by_static_policy": 0,
+  "note": "Both diagrams were checked against basic Mermaid authoring conventions only. Mermaid.js browser parse/render and Mermaid CLI were not run."
+}
