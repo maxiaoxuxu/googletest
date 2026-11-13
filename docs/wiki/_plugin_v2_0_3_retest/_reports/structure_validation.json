@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "pages_expected": 2,
+    "pages_found": 2,
+    "pages_missing": 0,
+    "page_id_errors": 0,
+    "autogen_errors": 0,
+    "h1_errors": 0,
+    "citation_commit_errors": 0,
+    "citation_line_range_errors": 0,
+    "total_errors": 0,
+    "is_valid": true
+  },
+  "pages": [
+    {
+      "file": "02_registration.md",
+      "page_id": "googletest_retest_02_registration",
+      "autogen_pairs": 1,
+      "h1_count": 1,
+      "mermaid_blocks": 1,
+      "citation_occurrences": 12
+    },
+    {
+      "file": "08_expectations.md",
+      "page_id": "googletest_retest_08_expectations",
+      "autogen_pairs": 1,
+      "h1_count": 1,
+      "mermaid_blocks": 1,
+      "citation_occurrences": 18
+    }
+  ],
+  "checks": [
+    "TOC page IDs match output PAGE_ID markers",
+    "one balanced AUTOGEN pair per page",
+    "exactly one H1 per page",
+    "all citation URLs pin to main commit a8380b01a25ebdb130097b607b3afed2a58d04ba",
+    "all cited line-range end values are within the corresponding fetched source file line count",
+    "all output paths are under docs/wiki/_plugin_v2_0_3_retest/"
+  ],
+  "limitations": [
+    "Static validation only; original Python validation helpers were not run.",
+    "Citation validation checked pinned commit, path availability, and line-range bounds; it was not a full semantic proof of every sentence."
+  ]
+}
