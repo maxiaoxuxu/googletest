@@ -1,8 +1,30 @@
 {
-  "validation_level": "Level 0 — static authoring checks only",
-  "diagrams_scanned": 2,
-  "invalid_blocks": [],
+  "validation_level": "Level 0 — static authoring audit; no Mermaid.js or CLI execution",
+  "scope": {
+    "original_wiki_pages": 11,
+    "smoke_test_pages": 2,
+    "retest_pages": 2,
+    "mermaid_blocks_scanned": 9
+  },
+  "findings": [
+    {
+      "file": "docs/wiki/08_expectations.md",
+      "status": "static_risk_not_runtime_verified",
+      "pattern": "C -->|\"no\"| D; C -->|\"yes\"| E",
+      "action": "Original file preserved; do not treat as validated."
+    },
+    {
+      "file": "docs/wiki/_plugin_v2_0_3_retest/08_expectations.md",
+      "status": "fixed_in_retest_copy",
+      "pattern": "D -->| \"No\" | E; D -->| \"Yes\" | F",
+      "action": "Changed to unquoted pipe labels: D -->|No| E; D -->|Yes| F. GitHub screenshot had shown a parse error before correction."
+    }
+  ],
+  "other_blocks": {
+    "count": 7,
+    "status": "no_same_pattern_found_static_only"
+  },
   "renderer_executed": false,
   "cli_executed": false,
-  "note": "Both diagrams use graph TD, quoted node labels, balanced Mermaid fences, and no citations inside the diagram. This is not proof that Mermaid.js parsed or rendered SVG."
+  "note": "A static scan is not proof of Mermaid syntax validity or SVG rendering. See MERMAID_AUDIT.md."
 }
