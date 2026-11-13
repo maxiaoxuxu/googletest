@@ -1,0 +1,9 @@
+{
+  "summary": {
+    "total_scanned": 5,
+    "total_invalid": 0
+  },
+  "invalid_blocks": [],
+  "validation_level": "Level 0 — authoring-policy/static checks only",
+  "note": "No Mermaid.js parser/render or Mermaid CLI was run."
+}

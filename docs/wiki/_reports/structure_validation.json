@@ -1,0 +1,14 @@
+{
+  "summary": {
+    "pages_validated": 11,
+    "pages_missing": 0,
+    "sections_validated": 11,
+    "sections_missing": 0,
+    "total_errors": 0,
+    "total_warnings": 0,
+    "is_valid": true
+  },
+  "errors": [],
+  "warnings": [],
+  "validation_method": "In-memory static checks against generated files and TOC; original Python validator was not run."
+}

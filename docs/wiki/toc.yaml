@@ -1,0 +1,236 @@
+project:
+  name: "GoogleTest / GoogleMock 1.18.0"
+  description: "面向 GoogleTest 与 GoogleMock 的源码导读，覆盖测试声明、注册与执行、断言结果、扩展测试形态、Mock/Expectation/Action/Matcher 以及构建自测。"
+  repo_base_url: "https://github.com/maxiaoxuxu/googletest/blob"
+  ref_commit_hash: "a8380b01a25ebdb130097b607b3afed2a58d04ba"
+  updated_at: "2026-11-13"
+  language: "zh-CN"
+pages:
+  - id: googletest_01_project_overview
+    title: "项目总览与模块边界"
+    filename: "01_project_overview.md"
+    description: "项目总览与模块边界 的源码实现、关键对象与执行路径"
+    source_files:
+      - "README.md"
+      - "CMakeLists.txt"
+      - "googletest/CMakeLists.txt"
+      - "googlemock/CMakeLists.txt"
+      - "googletest/src/gtest-all.cc"
+      - "googlemock/src/gmock-all.cc"
+    sections:
+      - id: googletest_01_project_overview_main
+        title: "项目总览与模块边界"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages:
+      - googletest_02_registration
+      - googletest_03_execution
+      - googletest_04_fixtures_environment
+      - googletest_11_build_testing
+  - id: googletest_02_registration
+    title: "TEST 宏与测试注册"
+    filename: "02_registration.md"
+    description: "TEST 宏与测试注册 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googletest/include/gtest/gtest.h"
+      - "googletest/include/gtest/internal/gtest-internal.h"
+      - "googletest/src/gtest.cc"
+      - "googletest/src/gtest-internal-inl.h"
+    sections:
+      - id: googletest_02_registration_main
+        title: "TEST 宏与测试注册"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages:
+      - googletest_01_project_overview
+      - googletest_03_execution
+      - googletest_04_fixtures_environment
+  - id: googletest_03_execution
+    title: "RUN_ALL_TESTS 执行路径"
+    filename: "03_execution.md"
+    description: "RUN_ALL_TESTS 执行路径 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googletest/src/gtest.cc"
+      - "googletest/src/gtest_main.cc"
+      - "googletest/src/gtest-internal-inl.h"
+    sections:
+      - id: googletest_03_execution_main
+        title: "RUN_ALL_TESTS 执行路径"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages:
+      - googletest_02_registration
+      - googletest_04_fixtures_environment
+      - googletest_05_assertions_results
+      - googletest_06_test_variants
+  - id: googletest_04_fixtures_environment
+    title: "Fixture、Environment 与事件监听"
+    filename: "04_fixtures_environment.md"
+    description: "Fixture、Environment 与事件监听 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googletest/include/gtest/gtest.h"
+      - "googletest/src/gtest.cc"
+    sections:
+      - id: googletest_04_fixtures_environment_main
+        title: "Fixture、Environment 与事件监听"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: false
+        diagram_types: []
+    related_pages:
+      - googletest_03_execution
+      - googletest_05_assertions_results
+      - googletest_06_test_variants
+  - id: googletest_05_assertions_results
+    title: "断言与结果收集"
+    filename: "05_assertions_results.md"
+    description: "断言与结果收集 的源码实现、关键对象与执行路径"
+    source_files:
+      - "docs/primer.md"
+      - "googletest/include/gtest/gtest.h"
+      - "googletest/src/gtest.cc"
+      - "googletest/src/gtest-test-part.cc"
+    sections:
+      - id: googletest_05_assertions_results_main
+        title: "断言与结果收集"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: false
+        diagram_types: []
+    related_pages:
+      - googletest_03_execution
+      - googletest_04_fixtures_environment
+      - googletest_10_matchers
+  - id: googletest_06_test_variants
+    title: "参数化、Typed、Death 与动态测试"
+    filename: "06_test_variants.md"
+    description: "参数化、Typed、Death 与动态测试 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googletest/include/gtest/gtest-param-test.h"
+      - "googletest/include/gtest/internal/gtest-param-util.h"
+      - "googletest/include/gtest/gtest-typed-test.h"
+      - "googletest/include/gtest/gtest.h"
+      - "googletest/src/gtest-death-test.cc"
+      - "googletest/src/gtest.cc"
+      - "docs/advanced.md"
+    sections:
+      - id: googletest_06_test_variants_main
+        title: "参数化、Typed、Death 与动态测试"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: false
+        diagram_types: []
+    related_pages:
+      - googletest_03_execution
+      - googletest_04_fixtures_environment
+      - googletest_08_expectations
+      - googletest_11_build_testing
+  - id: googletest_07_gmock_runtime
+    title: "GoogleMock 运行时"
+    filename: "07_gmock_runtime.md"
+    description: "GoogleMock 运行时 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googlemock/include/gmock/gmock.h"
+      - "googlemock/include/gmock/gmock-function-mocker.h"
+      - "googlemock/include/gmock/gmock-spec-builders.h"
+    sections:
+      - id: googletest_07_gmock_runtime_main
+        title: "GoogleMock 运行时"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages:
+      - googletest_01_project_overview
+      - googletest_09_actions
+      - googletest_10_matchers
+      - googletest_11_build_testing
+  - id: googletest_08_expectations
+    title: "Expectation 匹配与调用约束"
+    filename: "08_expectations.md"
+    description: "Expectation 匹配与调用约束 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googlemock/include/gmock/gmock-spec-builders.h"
+      - "googlemock/src/gmock-spec-builders.cc"
+    sections:
+      - id: googletest_08_expectations_main
+        title: "Expectation 匹配与调用约束"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages:
+      - googletest_07_gmock_runtime
+      - googletest_09_actions
+      - googletest_10_matchers
+  - id: googletest_09_actions
+    title: "Action 动作模型"
+    filename: "09_actions.md"
+    description: "Action 动作模型 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googlemock/include/gmock/gmock-actions.h"
+      - "googlemock/include/gmock/gmock-spec-builders.h"
+    sections:
+      - id: googletest_09_actions_main
+        title: "Action 动作模型"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: false
+        diagram_types: []
+    related_pages:
+      - googletest_07_gmock_runtime
+      - googletest_08_expectations
+      - googletest_10_matchers
+  - id: googletest_10_matchers
+    title: "Matcher 匹配器机制"
+    filename: "10_matchers.md"
+    description: "Matcher 匹配器机制 的源码实现、关键对象与执行路径"
+    source_files:
+      - "googletest/include/gtest/gtest-matchers.h"
+      - "googlemock/include/gmock/gmock-matchers.h"
+      - "googlemock/include/gmock/gmock-spec-builders.h"
+    sections:
+      - id: googletest_10_matchers_main
+        title: "Matcher 匹配器机制"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: false
+        diagram_types: []
+    related_pages:
+      - googletest_05_assertions_results
+      - googletest_07_gmock_runtime
+      - googletest_08_expectations
+      - googletest_09_actions
+  - id: googletest_11_build_testing
+    title: "构建与项目自测"
+    filename: "11_build_testing.md"
+    description: "构建与项目自测 的源码实现、关键对象与执行路径"
+    source_files:
+      - "README.md"
+      - "CMakeLists.txt"
+      - "googletest/CMakeLists.txt"
+      - "googlemock/CMakeLists.txt"
+      - "googletest/test/BUILD.bazel"
+      - "googlemock/test/BUILD.bazel"
+    sections:
+      - id: googletest_11_build_testing_main
+        title: "构建与项目自测"
+        description: "基于固定 commit 的源码与文档证据进行说明"
+        autogen: true
+        diagrams_needed: false
+        diagram_types: []
+    related_pages:
+      - googletest_01_project_overview
+      - googletest_06_test_variants
+notes:
+  - "Source ref is pinned to commit a8380b01a25ebdb130097b607b3afed2a58d04ba."
+  - "The target repository contains 252 tracked files and 30 directories in the inspected recursive Git tree."
+  - "The installed ChatGPT plugin package omits the original phase specifications, helper scripts, TOC schema, page template, and several required references. The missing phase specifications were retrieved from my-ai-skill/deepwiki-skill at 887304e68ff3711a964bcb4b3f33e47ad53c4405 for this run."
+  - "Native subagent dispatch was not available; doc-write pages were processed sequentially with one page boundary per task."
+  - "Mermaid validation was Level 0 static authoring checks only. No Mermaid.js browser rendering or Mermaid CLI execution occurred."
