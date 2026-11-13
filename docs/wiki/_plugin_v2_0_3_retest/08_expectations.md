@@ -67,8 +67,8 @@ graph TD
   A["Mock method invoked"] --> B["Lock g_gmock_mutex"]
   B --> C["Reverse-scan expectations"]
   C --> D{"Matching expectation found?"}
-  D -->| "No" | E["Format unexpected-call report"]
-  D -->| "Yes" | F["Check saturation and prerequisites"]
+  D -->|No| E["Format unexpected-call report"]
+  D -->|Yes| F["Check saturation and prerequisites"]
   F --> G["Increment call count"]
   G --> H["Select Action or default"]
   H --> I["Release lock"]
