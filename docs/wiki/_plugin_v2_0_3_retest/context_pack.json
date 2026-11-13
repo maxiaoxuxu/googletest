@@ -1,0 +1,38 @@
+{
+  "repository": "maxiaoxuxu/googletest",
+  "target_branch": "test",
+  "source_ref": "main",
+  "source_commit": "a8380b01a25ebdb130097b607b3afed2a58d04ba",
+  "workflow_source": "my-ai-skill/deepwiki-skill@887304e68ff3711a964bcb4b3f33e47ad53c4405",
+  "host_execution": "ChatGPT plugin Skill loaded via explicit @mention; GitHub connector used for source reads and writes",
+  "phases": {
+    "repo-scan": "completed via GitHub recursive tree and metadata; local collect_context.py not run",
+    "toc-design": "completed by deriving a focused two-page TOC from existing Wiki page scope",
+    "doc-write": "completed for two page-scoped tasks, sequential fallback",
+    "validate-docs": "completed via static structure and citation-bound checks",
+    "doc-summary": "completed",
+    "incremental-sync": "not applicable"
+  },
+  "inspected_sources": [
+    "googletest/include/gtest/gtest.h",
+    "googletest/include/gtest/internal/gtest-internal.h",
+    "googletest/src/gtest.cc",
+    "googletest/src/gtest-internal-inl.h",
+    "googlemock/include/gmock/gmock-spec-builders.h",
+    "googlemock/src/gmock-spec-builders.cc"
+  ],
+  "prior_outputs_preserved": [
+    "docs/wiki/02_registration.md",
+    "docs/wiki/08_expectations.md"
+  ],
+  "parallel_workers": {
+    "available": false,
+    "strategy": "sequential fallback",
+    "worker_ids": []
+  },
+  "mermaid": {
+    "level": 0,
+    "browser_parse_render": false,
+    "cli": false
+  }
+}
