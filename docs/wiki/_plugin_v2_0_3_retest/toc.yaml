@@ -1,0 +1,41 @@
+project:
+  name: "GoogleTest / GoogleMock DeepWiki 2.0.3 retest"
+  description: "针对已有 Wiki 的 TEST 注册路径与 GoogleMock expectation 机制进行源码级复测和质量对比。"
+  repo_base_url: "https://github.com/maxiaoxuxu/googletest/blob"
+  ref_commit_hash: "a8380b01a25ebdb130097b607b3afed2a58d04ba"
+  updated_at: "2026-11-13"
+  language: "zh-CN"
+pages:
+  - id: googletest_retest_02_registration
+    title: "TEST 宏、静态注册与测试实例化"
+    filename: "02_registration.md"
+    description: "从 TEST 宏展开追踪静态注册、TestInfo 入库与 Factory 延迟创建。"
+    source_files:
+      - "googletest/include/gtest/gtest.h"
+      - "googletest/include/gtest/internal/gtest-internal.h"
+      - "googletest/src/gtest.cc"
+      - "googletest/src/gtest-internal-inl.h"
+    sections:
+      - id: googletest_retest_02_registration_pipeline
+        title: "TEST 宏、静态注册与测试实例化"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: [googletest_retest_08_expectations]
+  - id: googletest_retest_08_expectations
+    title: "EXPECT_CALL 的匹配、调用计数与 Action 选择"
+    filename: "08_expectations.md"
+    description: "从 expectation 注册与匹配到调用计数、Action 执行及验证失败。"
+    source_files:
+      - "googlemock/include/gmock/gmock-spec-builders.h"
+      - "googlemock/src/gmock-spec-builders.cc"
+    sections:
+      - id: googletest_retest_08_expectations_pipeline
+        title: "EXPECT_CALL 的匹配、调用计数与 Action 选择"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: [googletest_retest_02_registration]
+notes:
+  - "This is a controlled two-page retest, not a full regeneration of all 11 existing pages."
+  - "All source citations are pinned to main commit a8380b01a25ebdb130097b607b3afed2a58d04ba."
