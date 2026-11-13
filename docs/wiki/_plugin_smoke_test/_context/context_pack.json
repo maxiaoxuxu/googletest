@@ -1,0 +1,28 @@
+{
+  "repository": "maxiaoxuxu/googletest",
+  "source_ref": "main",
+  "source_commit": "a8380b01a25ebdb130097b607b3afed2a58d04ba",
+  "target_branch": "test",
+  "target_output_dir": "docs/wiki/_plugin_smoke_test/",
+  "scan_method": "GitHub recursive tree API plus targeted source reads",
+  "local_collect_context_py_executed": false,
+  "top_level_paths": [
+    ".github",
+    "ci",
+    "docs",
+    "googlemock",
+    "googletest"
+  ],
+  "inspected_source_paths": [
+    "CMakeLists.txt",
+    "googletest/CMakeLists.txt",
+    "googlemock/CMakeLists.txt",
+    "googletest/src/gtest-all.cc",
+    "googlemock/src/gmock-all.cc"
+  ],
+  "notes": [
+    "Repository root CMake selects GoogleMock by default via BUILD_GMOCK=ON.",
+    "GoogleTest and GoogleMock CMake targets are defined in their respective subproject files.",
+    "Aggregate .cc files include implementation .cc files."
+  ]
+}
