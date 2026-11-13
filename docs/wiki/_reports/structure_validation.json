@@ -6,9 +6,12 @@
     "sections_missing": 0,
     "total_errors": 0,
     "total_warnings": 0,
-    "is_valid": true
+    "is_valid": true,
+    "source_citations_checked": 196,
+    "source_paths_checked": 196,
+    "source_path_errors": 0
   },
   "errors": [],
   "warnings": [],
-  "validation_method": "In-memory static checks against generated files and TOC; original Python validator was not run."
+  "validation_method": "In-memory static checks against generated files and TOC; original Python validator was not run. All source citation URLs were checked against the pinned recursive repository tree; shortened source paths were expanded and corrected."
 }
