@@ -23,17 +23,17 @@
 
 ## Matcher 的接口
 
-Matcher 的核心任务是“判断值是否满足条件”，并尽可能解释匹配结果。自定义 Matcher 实现 `MatcherInterface<T>::MatchAndExplain()`，同时提供 `DescribeTo()` / `DescribeNegationTo()`，让失败消息可以描述期望和实际值。([gtest-matchers.h:62-145](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/gtest-matchers.h#L62-L145))
+Matcher 的核心任务是“判断值是否满足条件”，并尽可能解释匹配结果。自定义 Matcher 实现 `MatcherInterface<T>::MatchAndExplain()`，同时提供 `DescribeTo()` / `DescribeNegationTo()`，让失败消息可以描述期望和实际值。([gtest-matchers.h:62-145](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googletest/include/gtest/gtest-matchers.h#L62-L145))
 
-`MatchResultListener` 可接收匹配解释；没有人需要解释时，Matcher 可以避免构造额外诊断信息。([gtest-matchers.h:73-103](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/gtest-matchers.h#L73-L103))
+`MatchResultListener` 可接收匹配解释；没有人需要解释时，Matcher 可以避免构造额外诊断信息。([gtest-matchers.h:73-103](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googletest/include/gtest/gtest-matchers.h#L73-L103))
 
 ## Matcher<T> 的类型擦除和句柄
 
-`Matcher<T>` 是可复制、不可变（除赋值外）的匹配器句柄，其实现持有 matcher 实例。使用模板与构造适配，调用点可以把值、具体 matcher 或自定义 matcher 转换为匹配器对象。([gtest-matchers.h:452-485](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/gtest-matchers.h#L452-L485))
+`Matcher<T>` 是可复制、不可变（除赋值外）的匹配器句柄，其实现持有 matcher 实例。使用模板与构造适配，调用点可以把值、具体 matcher 或自定义 matcher 转换为匹配器对象。([gtest-matchers.h:452-485](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googletest/include/gtest/gtest-matchers.h#L452-L485))
 
 ## 自定义 Matcher
 
-gMock 提供 `MATCHER`、`MATCHER_P` 等宏，简化自定义匹配器的声明；匹配逻辑返回 bool，描述信息用于生成更可读的失败消息。([gmock-matchers.h:30-85](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/gmock-matchers.h#L30-L85))
+gMock 提供 `MATCHER`、`MATCHER_P` 等宏，简化自定义匹配器的声明；匹配逻辑返回 bool，描述信息用于生成更可读的失败消息。([gmock-matchers.h:30-85](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googlemock/include/gmock/gmock-matchers.h#L30-L85))
 
 Matcher 同时被两条路径使用：
 

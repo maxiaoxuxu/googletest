@@ -40,7 +40,7 @@ GoogleTest 是 C++ 测试框架，GoogleMock 是与之配套的 Mock 框架。�
 - `googlemock/include/gmock/` 是 Mock API；`googlemock/src/` 实现 Mock 注册和期望管理。
 - `googletest/test/` 与 `googlemock/test/` 存放框架自身测试。
 
-`gtest-all.cc` 和 `gmock-all.cc` 是聚合编译单元，会 include 多个真实实现文件，不是平行的第二套实现。([gtest-all.cc:40-50](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/gtest-all.cc#L40-L50)) ([gmock-all.cc:41-47](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/gmock-all.cc#L41-L47))
+`gtest-all.cc` 和 `gmock-all.cc` 是聚合编译单元，会 include 多个真实实现文件，不是平行的第二套实现。([gtest-all.cc:40-50](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googletest/src/gtest-all.cc#L40-L50)) ([gmock-all.cc:41-47](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googlemock/src/gmock-all.cc#L41-L47))
 
 ## CMake 目标关系
 

@@ -13,5 +13,5 @@
   },
   "errors": [],
   "warnings": [],
-  "validation_method": "In-memory static checks against generated files and TOC; original Python validator was not run. All source citation URLs were checked against the pinned recursive repository tree; shortened source paths were expanded and corrected."
+  "validation_method": "Static marker/link checks plus exact validation of all 196 source citation URLs against the pinned GitHub recursive tree. This is not a Mermaid engine or CMake runtime test."
 }
