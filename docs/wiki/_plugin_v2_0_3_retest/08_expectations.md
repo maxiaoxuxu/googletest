@@ -37,7 +37,9 @@
 
 ## 3. 前置依赖、调用计数与饱和
 
-Expectation 维护 cardinality 和 call count，并提供 `IsSatisfied()`、`IsSaturated()`、`IsOverSaturated()` 等状态判断；这些状态分别用于判断次数是否达到要求、是否达到上限以及是否超出上限。([gmock-spec-builders.h:780-815](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googlemock/include/gmock/gmock-spec-builders.h#L780-L815))
+`ShouldHandleArguments()` 将三项条件合并为“未退休、全部前置 expectation 已满足、参数 matcher 匹配”；其中 `AllPrerequisitesAreSatisfied()` 会递归检查前置关系。([gmock-spec-builders.h:1122-1134](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googlemock/include/gmock/gmock-spec-builders.h#L1122-L1134))
+
+Expectation 维护 cardinality 和 call count，并提供 `IsSatisfied()`、`IsSaturated()`、`IsOverSaturated()` 等状态判断；这些状态分别用于判断次数是否达到要求、是否达到上限以及是否超出上限。([gmock-spec-builders.h:780-815](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googlemock/include/gmock/gmock-spec-builders.h#L780-L815))、([gmock-spec-builders.h:1122-1134](https://github.com/maxiaoxuxu/googletest/blob/a8380b01a25ebdb130097b607b3afed2a58d04ba/googlemock/include/gmock/gmock-spec-builders.h#L1122-L1134))
 
 当匹配成功后，`GetActionForArguments()` 分两条路径：
 
