@@ -46,7 +46,7 @@
 
 ## 插件包完整性问题
 
-实际安装的 `deepwiki-codebase-wiki 2.0.1` 包含 12 个文件，但未包含六份 `references/workflow/*.md`、`toc_schema.md`、`page_template.md`、`evidence_citation_policy.md`、`mermaid_policy.md`、`doc_update_policy.md)、原始 Python scripts 和 TOC template。
+实际安装的 `deepwiki-codebase-wiki 2.0.1` 包含 12 个文件，但未包含六份 `references/workflow/*.md`、`toc_schema.md`、`page_template.md`、`evidence_citation_policy.md`、`mermaid_policy.md`、`doc_update_policy.md`、原始 Python scripts 和 TOC template。
 
 这些文件在原始仓库 `my-ai-skill/deepwiki-skill` 中存在。本次为了按原流程进行，额外从上述固定 upstream commit 读取了相关 phase spec 和 references。换言之，本次产物可供检查，但**本次不能证明 2.0.1 安装包在缺少这些文件的情况下能够独立完成完整工作流**。
 
