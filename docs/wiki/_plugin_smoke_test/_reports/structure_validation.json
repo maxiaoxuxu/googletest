@@ -1,0 +1,19 @@
+{
+  "summary": {
+    "pages_validated": 2,
+    "pages_missing": 0,
+    "sections_validated": 2,
+    "sections_missing": 0,
+    "total_errors": 0,
+    "total_warnings": 0,
+    "is_valid": true
+  },
+  "checks": {
+    "page_ids": "2/2 present and unique",
+    "autogen_markers": "2/2 balanced",
+    "h1_headings": "2/2 present",
+    "citations": "all cited paths pinned to source commit a8380b01a25ebdb130097b607b3afed2a58d04ba",
+    "internal_links": "TOC page references resolve"
+  },
+  "validation_method": "Manual static validation of generated Markdown and TOC; original validate_docs_structure.py was not executed because no local shell/worktree was available."
+}
