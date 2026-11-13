@@ -1,0 +1,42 @@
+project:
+  name: "GoogleTest build and source composition smoke test"
+  description: "A focused DeepWiki runtime test for the repository build graph and aggregate compilation units."
+  repo_base_url: "https://github.com/maxiaoxuxu/googletest/blob"
+  ref_commit_hash: "a8380b01a25ebdb130097b607b3afed2a58d04ba"
+  updated_at: "2026-11-13"
+  language: "zh-CN"
+pages:
+  - id: googletest_smoke_01_build_graph
+    title: "构建入口与目标依赖"
+    filename: "01_build_graph.md"
+    description: "从根 CMake 入口追踪 GoogleTest 和 GoogleMock 的目标关系"
+    source_files:
+      - "CMakeLists.txt"
+      - "googletest/CMakeLists.txt"
+      - "googlemock/CMakeLists.txt"
+    sections:
+      - id: googletest_smoke_01_build_graph_cmake
+        title: "CMake 构建入口与库目标"
+        description: "解释 BUILD_GMOCK 分支、gtest/gmock 库与 main 目标依赖"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: [googletest_smoke_02_aggregate_units]
+  - id: googletest_smoke_02_aggregate_units
+    title: "聚合编译单元与模块边界"
+    filename: "02_aggregate_units.md"
+    description: "说明 gtest-all.cc 与 gmock-all.cc 如何聚合真实实现文件"
+    source_files:
+      - "googletest/src/gtest-all.cc"
+      - "googlemock/src/gmock-all.cc"
+    sections:
+      - id: googletest_smoke_02_aggregate_units_composition
+        title: "聚合编译单元的组成"
+        description: "根据 include 列表区分聚合入口与实际实现文件"
+        autogen: true
+        diagrams_needed: false
+        diagram_types: []
+    related_pages: [googletest_smoke_01_build_graph]
+notes:
+  - "This is an isolated smoke-test output. Existing docs/wiki files are not modified."
+  - "Source citations are pinned to main commit a8380b01a25ebdb130097b607b3afed2a58d04ba."
