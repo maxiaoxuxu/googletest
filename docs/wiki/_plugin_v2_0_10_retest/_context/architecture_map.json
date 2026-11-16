@@ -174,7 +174,7 @@
             "kind": "diagram",
             "location": "test-call-hierarchy",
             "diagram_id": "test-call-hierarchy",
-            "diagram_fragment": "MAIN -->|after InitGoogleTest returns, invokes| MACRO"
+            "diagram_fragment": "INIT -->|returns to main; then main calls| MACRO"
           }
         },
         {
@@ -553,8 +553,8 @@
             {
               "path": "googletest/src/gtest.cc",
               "start_line": 2766,
-              "end_line": 2785,
-              "contains": "this, &Test::TearDown, \"TearDown()\""
+              "end_line": 2790,
+              "contains": "always call TearDown(), even if"
             }
           ],
           "page_id": "googletest_03_test_execution_lifecycle",

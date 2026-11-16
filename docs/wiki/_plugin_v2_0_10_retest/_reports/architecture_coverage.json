@@ -140,7 +140,8 @@
           ],
           "representation": {
             "kind": "table",
-            "location": "全局、Suite、单测试三个生命周期层级"
+            "location": "全局、Suite、单测试三个生命周期层级",
+            "anchor": "全局、Suite、单测试三个生命周期层级"
           }
         },
         {
@@ -152,8 +153,8 @@
             {
               "path": "googletest/src/gtest.cc",
               "start_line": 2766,
-              "end_line": 2785,
-              "contains": "always call TearDown()"
+              "end_line": 2790,
+              "contains": "always call TearDown(), even if"
             },
             {
               "path": "googletest/src/gtest.cc",
@@ -215,7 +216,7 @@
           "representation": {
             "kind": "prose",
             "location": "异常失败分支 section",
-            "anchor": "fail-fast：RunAllTests 可以"
+            "anchor": "在一个 TestSuite 失败后 skip 剩余 suites"
           }
         }
       ],
@@ -263,7 +264,7 @@
             "kind": "diagram",
             "location": "test-call-hierarchy",
             "diagram_id": "test-call-hierarchy",
-            "diagram_fragment": "MAIN -->|after InitGoogleTest returns, invokes| MACRO"
+            "diagram_fragment": "INIT -->|returns to main; then main calls| MACRO"
           }
         },
         {
@@ -422,7 +423,7 @@
           "representation": {
             "kind": "prose",
             "location": "调用层级 section",
-            "anchor": "RunAllTests() 负责后置初始化"
+            "anchor": "负责后置初始化"
           }
         },
         {
@@ -643,8 +644,8 @@
             {
               "path": "googletest/src/gtest.cc",
               "start_line": 2766,
-              "end_line": 2785,
-              "contains": "this, &Test::TearDown, \"TearDown()\""
+              "end_line": 2790,
+              "contains": "always call TearDown(), even if"
             }
           ],
           "representation": {
@@ -696,7 +697,7 @@
           "representation": {
             "kind": "prose",
             "location": "整体执行分析 paragraph",
-            "anchor": "常规 GoogleTest 程序进入"
+            "anchor": "普通 GoogleTest 程序进入"
           }
         },
         {
@@ -718,7 +719,7 @@
           "representation": {
             "kind": "prose",
             "location": "整体执行分析 paragraph",
-            "anchor": "AddTestInfo() 的源码注释明确说明"
+            "anchor": "归入对应的 TestSuite"
           }
         },
         {
@@ -854,7 +855,7 @@
           "representation": {
             "kind": "prose",
             "location": "异常失败分支 section",
-            "anchor": "fail-fast：RunAllTests 可以"
+            "anchor": "skip 当前 suite 的剩余 TestInfo"
           }
         },
         {
@@ -876,7 +877,7 @@
           "representation": {
             "kind": "prose",
             "location": "异常失败分支 section",
-            "anchor": "fail-fast：RunAllTests 可以"
+            "anchor": "skip 剩余 suites"
           }
         },
         {
@@ -898,7 +899,7 @@
           "representation": {
             "kind": "prose",
             "location": "异常失败分支 section",
-            "anchor": "Suite setup 失败或 skip"
+            "anchor": "该 suite 中的 TestInfo 逐项 Skip"
           }
         },
         {
