@@ -43,6 +43,7 @@ GoogleMock 的 CMake 文件有明确的平台分支：MSVC 下，`gmock` 和 `gm
 
 ### 构建关系图
 
+<!-- DIAGRAM_ID: build-target-composition -->
 ```mermaid
 graph TD
     subgraph GTest
@@ -81,6 +82,7 @@ graph TD
 
 ### 普通平台运行入口图
 
+<!-- DIAGRAM_ID: runtime-test-entry -->
 ```mermaid
 graph TD
     GTMC["gtest_main.cc"] -->|defines entry| GTMAIN["main(argc, argv)"]

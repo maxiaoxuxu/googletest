@@ -22,7 +22,7 @@
 - 源码文件：6 个
 - 关键关系：20 条
 - Mermaid 图：2 张
-- 每张图均有独立 diagram audit。
+- 每张图均有独立 diagram audit，并在 Markdown 中用 `DIAGRAM_ID` 标记与报告一一对应。
 - 关键关系缺失、证据缺失、未审阅源文件和图内遗漏由 coverage manifest 校验器检查。
 - 当前 manifest 校验结果：**passed**（1 page，20 relationships，2 diagrams，0 errors，0 incomplete，0 warnings）。
 - 负向回归：从 runtime diagram 中移除 `rel-gmock-entry` 后，校验器按预期返回 **failed / critical_diagram_omission**。
