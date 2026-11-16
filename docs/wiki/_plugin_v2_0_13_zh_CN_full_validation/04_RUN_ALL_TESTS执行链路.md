@@ -54,7 +54,7 @@ RunAllTests() 在迭代结束后依据测试结果累计 failed 状态，最后�
 
 [googletest/include/gtest/gtest.h:2336-2349](https://github.com/maxiaoxuxu/googletest/blob/5feffc24e4d6c49608d241d53cacb2c8143d2beb/googletest/include/gtest/gtest.h#L2336-L2349)
 
-[googletest/src/gtest.cc:5940-5980](https://github.com/maxiaoxuxu/googletest/blob/5feffc24e4d6c49608d241d53cacb2c8143d2beb/googletest/src/gtest.cc#L5940-L5980)
+[googletest/src/gtest.cc:5985-6005](https://github.com/maxiaoxuxu/googletest/blob/5feffc24e4d6c49608d241d53cacb2c8143d2beb/googletest/src/gtest.cc#L5985-L6005)
 
 [googletest/src/gtest.cc:5618-5630](https://github.com/maxiaoxuxu/googletest/blob/5feffc24e4d6c49608d241d53cacb2c8143d2beb/googletest/src/gtest.cc#L5618-L5630)
 
