@@ -14,7 +14,7 @@
 
 # Action 动作模型
 
-> **相关页面**：[GoogleMock 运行时](./07_gmock_runtime.md) · [Expectation 匹配与调用约束](./08_expectations.md) · [Matcher 匹配器机制](./10_matchers.md)
+> **相关页面**：[GoogleMock 运行时](./07_GoogleMock运行时.md) · [Expectation 匹配与调用约束](./08_期望与调用约束.md) · [Matcher 匹配器机制](./10_Matcher匹配器机制.md)
 
 ---
 

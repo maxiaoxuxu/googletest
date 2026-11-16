@@ -14,7 +14,7 @@
 
 # Matcher 匹配器机制
 
-> **相关页面**：[断言与结果收集](./05_assertions_results.md) · [GoogleMock 运行时](./07_gmock_runtime.md) · [Expectation 匹配与调用约束](./08_expectations.md) · [Action 动作模型](./09_actions.md)
+> **相关页面**：[断言与结果收集](./05_断言与测试结果.md) · [GoogleMock 运行时](./07_GoogleMock运行时.md) · [Expectation 匹配与调用约束](./08_期望与调用约束.md) · [Action 动作模型](./09_Action动作模型.md)
 
 ---
 

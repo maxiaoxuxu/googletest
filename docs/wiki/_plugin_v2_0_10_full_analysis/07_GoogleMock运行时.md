@@ -16,7 +16,7 @@
 
 # GoogleMock 运行时
 
-> **相关页面**：[项目总览与模块边界](./01_project_overview.md) · [Action 动作模型](./09_actions.md) · [Matcher 匹配器机制](./10_matchers.md) · [构建与项目自测](./11_build_testing.md)
+> **相关页面**：[项目总览与模块边界](./01_项目总览与模块边界.md) · [Action 动作模型](./09_Action动作模型.md) · [Matcher 匹配器机制](./10_Matcher匹配器机制.md) · [构建与项目自测](./11_构建与项目自测.md)
 
 ---
 
