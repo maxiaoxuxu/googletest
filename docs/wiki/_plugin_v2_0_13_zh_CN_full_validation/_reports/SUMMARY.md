@@ -8,7 +8,7 @@
 - Pages: 6
 - Mermaid diagrams: 6
 - Declared architecture relationships: 39
-- Source citations: 37
+- Source citations: 38
 - Exact source excerpts checked: 50 / 50
 - New output: docs/wiki/_plugin_v2_0_13_zh_CN_full_validation/
 
