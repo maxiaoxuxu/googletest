@@ -9,6 +9,11 @@
 - 页面：`03_test_execution_lifecycle.md`
 - 执行策略：当前宿主无可观察原生 Subagent 接口，采用 sequential fallback
 
+## 跨文件核对
+- 通过 GitHub connector 按冻结 commit 重新读取 5 个源文件，并逐项核对页面 Markdown、TOC、architecture map 和 coverage report。
+- 核对 6 条 claims、31 条 relationships、全部 evidence 行范围与 `contains` 片段、57 个源码引用出现位置、3 个 DIAGRAM_ID 与 3 张 Mermaid 图，以及所有图关系片段/正文锚点。
+- 本轮 connector-backed 核对结果：**0 个跨文件不一致项**。没有本地 GoogleTest checkout，因此未声称执行了 `audit_wiki.py` 的本地 CLI。
+
 ## 分析范围
 - TEST/TEST_F 静态注册到 TestInfo / TestSuite
 - main → InitGoogleTest → PostFlagParsingInit
@@ -35,7 +40,7 @@
 - Listener 开始类和结束类通知的派发顺序并不相同；结束回调有逆序转发逻辑。
 
 ## 校验边界
-- 页面结构、引用 SHA、DIAGRAM_ID、图数量和 coverage ledger 已随产物提供。
+- 页面结构、引用 SHA、DIAGRAM_ID、图数量和 coverage ledger 已随产物提供并完成 connector-backed 跨文件核对。
 - 真正的跨文件自动校验需要在有 GoogleTest 本地源码工作树的环境运行 `audit_wiki.py`；当前会话用 GitHub connector 读取源码，不能声称在本会话完整运行了该工具。
 - Mermaid.js parse/render：not_run。
 - CMake configure/build/CTest：not_run。
