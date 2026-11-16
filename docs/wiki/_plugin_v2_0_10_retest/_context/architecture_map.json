@@ -402,7 +402,7 @@
             "kind": "diagram",
             "location": "test-call-hierarchy",
             "diagram_id": "test-call-hierarchy",
-            "diagram_fragment": "SUITE -->|runs| SETUP_SUITE"
+            "diagram_fragment": "SUITE -->|calls before test loop| SETUP_SUITE"
           }
         },
         {
@@ -425,7 +425,7 @@
             "kind": "diagram",
             "location": "test-call-hierarchy",
             "diagram_id": "test-call-hierarchy",
-            "diagram_fragment": "SUITE -->|iterates registered TestInfo| INFO"
+            "diagram_fragment": "SETUP_SUITE -->|then iterates suite tests| INFO"
           }
         },
         {
@@ -721,7 +721,7 @@
             "kind": "diagram",
             "location": "result-event-reporting",
             "diagram_id": "result-event-reporting",
-            "diagram_fragment": "ITER -->|formats counts and failures| SUMMARY"
+            "diagram_fragment": "PRINTER -->|formats counts and failures| SUMMARY"
           }
         },
         {

@@ -95,8 +95,8 @@ graph TD
     MACRO -->|calls UnitTest::Run| UNIT
     UNIT -->|calls RunAllTests through exception wrapper| ALL
     ALL -->|iterates selected suites| SUITE
-    SUITE -->|runs| SETUP_SUITE
-    SUITE -->|iterates registered TestInfo| INFO
+    SUITE -->|calls before test loop| SETUP_SUITE
+    SETUP_SUITE -->|then iterates suite tests| INFO
     INFO -->|creates fixture| FACTORY
     INFO -->|runs fixture| TEST
     TEST -->|invokes| SETUP
@@ -152,16 +152,14 @@ graph TD
     RESULT["Current TestResult"]
     REPEATER["TestEventRepeater"]
     LISTENER["Registered TestEventListener"]
-    PRINTER["PrettyUnitTestResultPrinter"]
-    ITER["OnTestIterationEnd"]
+    PRINTER["PrettyUnitTestResultPrinter::OnTestIterationEnd"]
     SUMMARY["Pass / skip / failure summary"]
     ASSERT -->|reports result| REPORTER
     REPORTER -->|stores in| RESULT
     REPORTER -->|notifies| REPEATER
     REPEATER -->|forwards OnTestPartResult| LISTENER
-    LISTENER -->|default printer receives events| PRINTER
-    PRINTER -->|prints iteration summary from| ITER
-    ITER -->|formats counts and failures| SUMMARY
+    REPEATER -->|dispatches iteration-end callback to| PRINTER
+    PRINTER -->|formats counts and failures| SUMMARY
 ```
 
 默认 PrettyUnitTestResultPrinter 在 OnTestIterationEnd 阶段打印执行数量、通过数量、skip 项和失败项。XML / streaming listener 的安装时机属于 PostFlagParsingInit，而最终回调分发由 TestEventRepeater 负责。[gtest.cc:3703-3734](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest.cc#L3703-L3734) [gtest.cc:5810-5850](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest.cc#L5810-L5850) [gtest.cc:3916-3977](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest.cc#L3916-L3977)
