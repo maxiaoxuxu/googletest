@@ -21,7 +21,9 @@
 - Mermaid 图：2 张
 - 每张图均有独立 diagram audit。
 - 关键关系缺失、证据缺失、未审阅源文件和图内遗漏由 coverage manifest 校验器检查。
-- 当前 manifest 校验结果：**passed**（1 page，0 errors，0 incomplete，0 warnings）。
+- 当前 manifest 校验结果：**passed**（1 page，20 relationships，2 diagrams，0 errors，0 incomplete，0 warnings）。
+- 负向回归：从 runtime diagram 中移除 `rel-gmock-entry` 后，校验器按预期返回 **failed / critical_diagram_omission**。
+- Mermaid 静态 authoring-style spot-check：2 个 Mermaid fence，quoted pipe-label findings 为 0。此项不是 Mermaid.js parser/render。
 
 注意：校验器验证的是已声明的 coverage manifest；它不能自动发现 architecture map 自身漏掉的关系。因此本轮另外重新打开 CMakeLists、gtest-all.cc、gmock-all.cc、gtest_main.cc、gmock_main.cc 进行了同一 Agent 的第二遍源码核对。
 
