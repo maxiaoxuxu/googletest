@@ -1,0 +1,11 @@
+{
+  "summary": {
+    "diagrams_scanned": 2,
+    "total_invalid": 0,
+    "static_findings": 0
+  },
+  "validation_level": "Level 0 — authoring-policy/static checks only",
+  "renderer_executed": false,
+  "cli_executed": false,
+  "note": "Both flowcharts checked for fences, graph TD declarations, quoted node labels, unquoted pipe labels, and no citations inside diagrams. Mermaid.js parse/render and Mermaid CLI were not run."
+}
