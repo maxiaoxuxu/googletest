@@ -1,0 +1,881 @@
+{
+  "schema_version": "1.0",
+  "repository": {
+    "full_name": "maxiaoxuxu/googletest",
+    "source_ref": "277cfa07d637aac85a388d1cb0c6adb585a1432e"
+  },
+  "pages": [
+    {
+      "page_id": "googletest_03_test_execution_lifecycle",
+      "filename": "03_test_execution_lifecycle.md",
+      "scope": "GoogleTest execution lifecycle from pre-main static registration through initialization, global/suite/test execution, event reporting and teardown; ordinary platform run path",
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest_main.cc",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "main",
+            "InitGoogleTest",
+            "RUN_ALL_TESTS"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googletest/include/gtest/gtest.h",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "RUN_ALL_TESTS"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googletest/include/gtest/internal/gtest-internal.h",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "GTEST_TEST_",
+            "MakeAndRegisterTestInfo"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googletest/src/gtest-internal-inl.h",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "UnitTestImpl::AddTestInfo"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "InitGoogleTestImpl",
+            "PostFlagParsingInit",
+            "UnitTest::Run",
+            "UnitTestImpl::RunAllTests",
+            "TestSuite::Run",
+            "TestInfo::Run",
+            "Test::Run",
+            "DefaultGlobalTestPartResultReporter",
+            "TestEventRepeater",
+            "PrettyUnitTestResultPrinter"
+          ],
+          "reason": ""
+        }
+      ],
+      "key_symbols": [
+        {
+          "name": "GTEST_TEST_",
+          "path": "googletest/include/gtest/internal/gtest-internal.h",
+          "role": "static registration object generated for each TEST/TEST_F"
+        },
+        {
+          "name": "MakeAndRegisterTestInfo",
+          "path": "googletest/src/gtest.cc",
+          "role": "creates TestInfo and inserts into UnitTestImpl"
+        },
+        {
+          "name": "UnitTestImpl::AddTestInfo",
+          "path": "googletest/src/gtest-internal-inl.h",
+          "role": "places TestInfo into TestSuite before main"
+        },
+        {
+          "name": "InitGoogleTestImpl",
+          "path": "googletest/src/gtest.cc",
+          "role": "parses argv and starts post-flag init"
+        },
+        {
+          "name": "UnitTestImpl::PostFlagParsingInit",
+          "path": "googletest/src/gtest.cc",
+          "role": "parameterized registration and listener setup"
+        },
+        {
+          "name": "UnitTest::Run",
+          "path": "googletest/src/gtest.cc",
+          "role": "exception wrapper and process exit status"
+        },
+        {
+          "name": "UnitTestImpl::RunAllTests",
+          "path": "googletest/src/gtest.cc",
+          "role": "global lifecycle and selected suite loop"
+        },
+        {
+          "name": "TestSuite::Run",
+          "path": "googletest/src/gtest.cc",
+          "role": "suite setup/test iteration/suite teardown"
+        },
+        {
+          "name": "TestInfo::Run",
+          "path": "googletest/src/gtest.cc",
+          "role": "fixture allocation, invocation, deletion"
+        },
+        {
+          "name": "Test::Run",
+          "path": "googletest/src/gtest.cc",
+          "role": "per-test SetUp/TestBody/TearDown"
+        },
+        {
+          "name": "DefaultGlobalTestPartResultReporter",
+          "path": "googletest/src/gtest.cc",
+          "role": "store TestPartResult and notify listeners"
+        },
+        {
+          "name": "TestEventRepeater",
+          "path": "googletest/src/gtest.cc",
+          "role": "forward and reverse callback dispatch"
+        },
+        {
+          "name": "PrettyUnitTestResultPrinter::OnTestIterationEnd",
+          "path": "googletest/src/gtest.cc",
+          "role": "print final test counts"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "rel-main-init",
+          "kind": "call",
+          "source": "gtest_main.cc:main",
+          "target": "InitGoogleTest",
+          "condition": "ordinary platforms",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 59,
+              "end_line": 65,
+              "contains": "testing::InitGoogleTest(&argc, argv);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "execution-lifecycle-overview",
+            "diagram_id": "execution-lifecycle-overview",
+            "diagram_fragment": "MAIN -->|calls| INIT"
+          }
+        },
+        {
+          "id": "rel-main-run",
+          "kind": "call",
+          "source": "gtest_main.cc:main",
+          "target": "RUN_ALL_TESTS",
+          "condition": "ordinary platforms after initialization",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 59,
+              "end_line": 65,
+              "contains": "return RUN_ALL_TESTS();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "MAIN -->|calls| INIT"
+          }
+        },
+        {
+          "id": "rel-init-parse",
+          "kind": "call",
+          "source": "InitGoogleTestImpl",
+          "target": "ParseGoogleTestFlagsOnly",
+          "condition": "normal initialization",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 7000,
+              "end_line": 7044,
+              "contains": "ParseGoogleTestFlagsOnly(argc, argv);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "execution-lifecycle-overview",
+            "diagram_id": "execution-lifecycle-overview",
+            "diagram_fragment": "INIT -->|parses flags and initializes| POST"
+          }
+        },
+        {
+          "id": "rel-init-postinit",
+          "kind": "call",
+          "source": "InitGoogleTestImpl",
+          "target": "PostFlagParsingInit",
+          "condition": "normal initialization",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 7000,
+              "end_line": 7044,
+              "contains": "GetUnitTestImpl()->PostFlagParsingInit();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "execution-lifecycle-overview",
+            "diagram_id": "execution-lifecycle-overview",
+            "diagram_fragment": "INIT -->|parses flags and initializes| POST"
+          }
+        },
+        {
+          "id": "rel-postinit-parameterized",
+          "kind": "registration",
+          "source": "PostFlagParsingInit",
+          "target": "RegisterParameterizedTests",
+          "condition": "parameterized tests enabled",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5810,
+              "end_line": 5850,
+              "contains": "RegisterParameterizedTests();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "入口与初始化 section",
+            "anchor": "参数化测试还有一个额外阶段"
+          }
+        },
+        {
+          "id": "rel-postinit-listeners",
+          "kind": "registration",
+          "source": "PostFlagParsingInit",
+          "target": "XML / brief / streaming listeners",
+          "condition": "configured flags / build capabilities",
+          "importance": "supporting",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5810,
+              "end_line": 5850,
+              "contains": "ConfigureXmlOutput();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "execution-lifecycle-overview",
+            "diagram_id": "execution-lifecycle-overview",
+            "diagram_fragment": "POST -->|expands parameterized tests and configures listeners| RUN"
+          }
+        },
+        {
+          "id": "rel-run-all-unit",
+          "kind": "call",
+          "source": "RUN_ALL_TESTS",
+          "target": "UnitTest::GetInstance()->Run",
+          "condition": "all normal invocations",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/gtest.h",
+              "start_line": 2337,
+              "end_line": 2348,
+              "contains": "return ::testing::UnitTest::GetInstance()->Run();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "MACRO -->|calls UnitTest::Run| UNIT"
+          }
+        },
+        {
+          "id": "rel-unit-runall",
+          "kind": "call",
+          "source": "UnitTest::Run",
+          "target": "UnitTestImpl::RunAllTests",
+          "condition": "normal execution",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5540,
+              "end_line": 5630,
+              "contains": "impl(), &internal::UnitTestImpl::RunAllTests,"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "UNIT -->|calls RunAllTests through exception wrapper| ALL"
+          }
+        },
+        {
+          "id": "rel-runall-postinit",
+          "kind": "call",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "PostFlagParsingInit",
+          "condition": "idempotent post-flag initialization",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5938,
+              "end_line": 5967,
+              "contains": "PostFlagParsingInit();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "调用层级 section",
+            "anchor": "RunAllTests() 负责后置初始化"
+          }
+        },
+        {
+          "id": "rel-runall-global-setup",
+          "kind": "call",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "Environment::SetUp",
+          "condition": "tests selected; first/recreated iteration",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6043,
+              "end_line": 6132,
+              "contains": "ForEach(environments_, SetUpEnvironment);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "execution-lifecycle-overview",
+            "diagram_id": "execution-lifecycle-overview",
+            "diagram_fragment": "GLOBAL -->|starts selected suites| SUITES"
+          }
+        },
+        {
+          "id": "rel-runall-suite",
+          "kind": "call",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "TestSuite::Run",
+          "condition": "tests selected and global setup permits execution",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6043,
+              "end_line": 6132,
+              "contains": "GetMutableSuiteCase(test_index)->Run();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "ALL -->|iterates selected suites| SUITE"
+          }
+        },
+        {
+          "id": "rel-suite-setup",
+          "kind": "call",
+          "source": "TestSuite::Run",
+          "target": "SetUpTestSuite",
+          "condition": "selected suite",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3054,
+              "end_line": 3125,
+              "contains": "this, &TestSuite::RunSetUpTestSuite, \"SetUpTestSuite()\""
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "SUITE -->|iterates registered TestInfo| INFO"
+          }
+        },
+        {
+          "id": "rel-suite-testinfo",
+          "kind": "call",
+          "source": "TestSuite::Run",
+          "target": "TestInfo::Run",
+          "condition": "suite does not skip all tests",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3054,
+              "end_line": 3125,
+              "contains": "GetMutableTestInfo(i)->Run();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "SUITE -->|iterates registered TestInfo| INFO"
+          }
+        },
+        {
+          "id": "rel-suite-teardown",
+          "kind": "call",
+          "source": "TestSuite::Run",
+          "target": "TearDownTestSuite",
+          "condition": "after suite test loop",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3054,
+              "end_line": 3125,
+              "contains": "this, &TestSuite::RunTearDownTestSuite, \"TearDownTestSuite()\""
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "三个生命周期层级 table",
+            "anchor": "Suite 内各个 TestInfo"
+          }
+        },
+        {
+          "id": "rel-testinfo-create",
+          "kind": "call",
+          "source": "TestInfo::Run",
+          "target": "TestFactoryBase::CreateTest",
+          "condition": "selected TestInfo",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2894,
+              "end_line": 2941,
+              "contains": "factory_, &internal::TestFactoryBase::CreateTest,"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "INFO -->|creates fixture| FACTORY"
+          }
+        },
+        {
+          "id": "rel-testinfo-test-run",
+          "kind": "call",
+          "source": "TestInfo::Run",
+          "target": "Test::Run",
+          "condition": "fixture creation has no fatal failure or skip",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2894,
+              "end_line": 2941,
+              "contains": "test->Run();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "INFO -->|runs fixture| TEST"
+          }
+        },
+        {
+          "id": "rel-test-run-setup",
+          "kind": "call",
+          "source": "Test::Run",
+          "target": "Test::SetUp",
+          "condition": "fixture run",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2766,
+              "end_line": 2785,
+              "contains": "this, &Test::SetUp, \"SetUp()\""
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "TEST -->|invokes| SETUP"
+          }
+        },
+        {
+          "id": "rel-test-run-body",
+          "kind": "call",
+          "source": "Test::Run",
+          "target": "Test::TestBody",
+          "condition": "no fatal failure and not skipped after SetUp",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2766,
+              "end_line": 2785,
+              "contains": "this, &Test::TestBody,"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "TEST -->|invokes if setup succeeded and not skipped| BODY"
+          }
+        },
+        {
+          "id": "rel-test-run-teardown",
+          "kind": "call",
+          "source": "Test::Run",
+          "target": "Test::TearDown",
+          "condition": "entered Test::Run",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2766,
+              "end_line": 2785,
+              "contains": "this, &Test::TearDown, \"TearDown()\""
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "test-call-hierarchy",
+            "diagram_id": "test-call-hierarchy",
+            "diagram_fragment": "TEST -->|always invokes for cleanup| TEARDOWN"
+          }
+        },
+        {
+          "id": "rel-registration-macro",
+          "kind": "static_registration",
+          "source": "GTEST_TEST_ static test_info_",
+          "target": "MakeAndRegisterTestInfo",
+          "condition": "static initialization before main",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/internal/gtest-internal.h",
+              "start_line": 1546,
+              "end_line": 1558,
+              "contains": "::testing::internal::MakeAndRegisterTestInfo("
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "execution-lifecycle-overview",
+            "diagram_id": "execution-lifecycle-overview",
+            "diagram_fragment": "REG -->|registers TestInfo| MAIN"
+          }
+        },
+        {
+          "id": "rel-registration-addinfo",
+          "kind": "registration",
+          "source": "MakeAndRegisterTestInfo",
+          "target": "UnitTestImpl::AddTestInfo",
+          "condition": "registration before main",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2849,
+              "end_line": 2861,
+              "contains": "GetUnitTestImpl()->AddTestInfo(set_up_tc, tear_down_tc, test_info);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "整体执行分析 paragraph",
+            "anchor": "常规 GoogleTest 程序进入"
+          }
+        },
+        {
+          "id": "rel-addinfo-suite",
+          "kind": "registration",
+          "source": "UnitTestImpl::AddTestInfo",
+          "target": "TestSuite::AddTestInfo",
+          "condition": "test registration",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest-internal-inl.h",
+              "start_line": 670,
+              "end_line": 693,
+              "contains": "->AddTestInfo(test_info);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "整体执行分析 paragraph",
+            "anchor": "AddTestInfo() 的源码注释明确说明"
+          }
+        },
+        {
+          "id": "rel-result-store",
+          "kind": "data_flow",
+          "source": "DefaultGlobalTestPartResultReporter",
+          "target": "current TestResult",
+          "condition": "assertion result reported",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 1093,
+              "end_line": 1110,
+              "contains": "unit_test_->current_test_result()->AddTestPartResult(result);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "result-event-reporting",
+            "diagram_id": "result-event-reporting",
+            "diagram_fragment": "REPORTER -->|stores in| RESULT"
+          }
+        },
+        {
+          "id": "rel-result-event",
+          "kind": "event",
+          "source": "DefaultGlobalTestPartResultReporter",
+          "target": "TestEventRepeater::OnTestPartResult",
+          "condition": "assertion result reported",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 1093,
+              "end_line": 1110,
+              "contains": "unit_test_->listeners()->repeater()->OnTestPartResult(result);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "result-event-reporting",
+            "diagram_id": "result-event-reporting",
+            "diagram_fragment": "REPORTER -->|notifies| REPEATER"
+          }
+        },
+        {
+          "id": "rel-event-forward",
+          "kind": "event",
+          "source": "TestEventRepeater",
+          "target": "TestEventListener callbacks",
+          "condition": "forwarding_enabled_",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3916,
+              "end_line": 3977,
+              "contains": "listeners_[i]->Name(parameter);"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "result-event-reporting",
+            "diagram_id": "result-event-reporting",
+            "diagram_fragment": "REPEATER -->|forwards OnTestPartResult| LISTENER"
+          }
+        },
+        {
+          "id": "rel-printer-summary",
+          "kind": "reporting",
+          "source": "PrettyUnitTestResultPrinter::OnTestIterationEnd",
+          "target": "pass/skip/failure summary",
+          "condition": "iteration ended",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3703,
+              "end_line": 3734,
+              "contains": "printf(\"%s.\\\\n\", FormatTestCount(unit_test.successful_test_count()).c_str());"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "diagram",
+            "location": "result-event-reporting",
+            "diagram_id": "result-event-reporting",
+            "diagram_fragment": "ITER -->|formats counts and failures| SUMMARY"
+          }
+        },
+        {
+          "id": "rel-global-teardown",
+          "kind": "lifecycle",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "Environment::TearDown reverse order",
+          "condition": "end of selected iteration or recreate environment",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6043,
+              "end_line": 6132,
+              "contains": "std::for_each(environments_.rbegin(), environments_.rend(),"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "全局、Suite、单测试三个生命周期层级",
+            "anchor": "全局 Environment 在每次迭代开头按正向顺序执行 setup"
+          }
+        },
+        {
+          "id": "rel-failfast-suite",
+          "kind": "control_flow",
+          "source": "TestSuite::Run",
+          "target": "skip remaining TestInfo",
+          "condition": "gtest_fail_fast and current TestInfo failed",
+          "importance": "supporting",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3054,
+              "end_line": 3125,
+              "contains": "GetMutableTestInfo(j)->Skip();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "异常失败分支 section",
+            "anchor": "fail-fast：RunAllTests 可以"
+          }
+        },
+        {
+          "id": "rel-failfast-global",
+          "kind": "control_flow",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "skip remaining TestSuite",
+          "condition": "gtest_fail_fast and current suite failed",
+          "importance": "supporting",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6043,
+              "end_line": 6132,
+              "contains": "GetMutableSuiteCase(j)->Skip();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "异常失败分支 section",
+            "anchor": "fail-fast：RunAllTests 可以"
+          }
+        },
+        {
+          "id": "rel-suite-skip",
+          "kind": "control_flow",
+          "source": "TestSuite::Run",
+          "target": "TestInfo::Skip",
+          "condition": "suite ad-hoc result failed or skipped",
+          "importance": "supporting",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3054,
+              "end_line": 3125,
+              "contains": "GetMutableTestInfo(i)->Skip();"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "异常失败分支 section",
+            "anchor": "Suite setup 失败或 skip"
+          }
+        },
+        {
+          "id": "rel-testbody-conditional",
+          "kind": "control_flow",
+          "source": "Test::Run",
+          "target": "TestBody conditional execution",
+          "condition": "no fatal failure and not skipped",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2766,
+              "end_line": 2785,
+              "contains": "if (!HasFatalFailure() && !IsSkipped()) {"
+            }
+          ],
+          "page_id": "googletest_03_test_execution_lifecycle",
+          "representation": {
+            "kind": "prose",
+            "location": "单个 Test 的 setup / body / teardown 规则",
+            "anchor": "只有在 setup 未触发 fatal failure"
+          }
+        }
+      ],
+      "diagrams": [
+        {
+          "diagram_id": "execution-lifecycle-overview",
+          "scope": "pre-main registration, normal main/init and global execution stages",
+          "relationship_ids": [
+            "rel-main-init",
+            "rel-init-parse",
+            "rel-init-postinit",
+            "rel-postinit-listeners",
+            "rel-runall-global-setup",
+            "rel-registration-macro"
+          ]
+        },
+        {
+          "diagram_id": "test-call-hierarchy",
+          "scope": "normal call hierarchy through TestSuite/TestInfo/Test and fixture methods",
+          "relationship_ids": [
+            "rel-main-run",
+            "rel-run-all-unit",
+            "rel-unit-runall",
+            "rel-runall-suite",
+            "rel-suite-setup",
+            "rel-suite-testinfo",
+            "rel-testinfo-create",
+            "rel-testinfo-test-run",
+            "rel-test-run-setup",
+            "rel-test-run-body",
+            "rel-test-run-teardown"
+          ]
+        },
+        {
+          "diagram_id": "result-event-reporting",
+          "scope": "assertion result storage and event listener/report output",
+          "relationship_ids": [
+            "rel-result-store",
+            "rel-result-event",
+            "rel-event-forward",
+            "rel-printer-summary"
+          ]
+        }
+      ]
+    }
+  ]
+}

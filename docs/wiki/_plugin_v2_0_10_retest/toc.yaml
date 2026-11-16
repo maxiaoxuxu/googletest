@@ -1,0 +1,30 @@
+project:
+  name: "GoogleTest"
+  description: "Source-grounded documentation of GoogleTest's test runner lifecycle"
+  repo_base_url: "https://github.com/maxiaoxuxu/googletest/blob"
+  ref_commit_hash: "277cfa07d637aac85a388d1cb0c6adb585a1432e"
+  updated_at: "2026-11-16"
+  language: "zh-CN"
+pages:
+  - id: googletest_03_test_execution_lifecycle
+    title: "GoogleTest 测试执行生命周期"
+    filename: "03_test_execution_lifecycle.md"
+    description: "Trace static test registration, main initialization, RUN_ALL_TESTS, global/suite/test lifecycle, result events and teardown."
+    source_files:
+      - "googletest/src/gtest_main.cc"
+      - "googletest/include/gtest/gtest.h"
+      - "googletest/include/gtest/internal/gtest-internal.h"
+      - "googletest/src/gtest-internal-inl.h"
+      - "googletest/src/gtest.cc"
+    sections:
+      - id: googletest_03_test_execution_lifecycle_main
+        title: "从静态注册到结果报告"
+        description: "Explain the full normal-platform execution lifecycle, including failure/skip and listener reporting."
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages:
+      - "googletest_01_build_graph"
+      - "googletest_02_aggregate_units"
+notes:
+  - "This page describes the ordinary platform execution path; Arduino/QuRT alternate entries and death-test child process lifecycle are out of scope."
