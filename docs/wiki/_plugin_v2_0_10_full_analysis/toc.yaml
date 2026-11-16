@@ -1,0 +1,181 @@
+project:
+  name: "GoogleTest / GoogleMock 1.18.0"
+  description: "完整源码分析：构建组成、测试注册与生命周期、GTest/GMock 运行机制和项目自测。"
+  repo_base_url: "https://github.com/maxiaoxuxu/googletest/blob"
+  ref_commit_hash: "9771e129724f0a568fd254ca774a6cc55bf09e8d"
+  updated_at: "2026-11-16"
+  language: "zh-CN"
+pages:
+  - id: googletest_01_project_overview
+    title: "项目总览与模块边界"
+    filename: "01_project_overview.md"
+    description: "项目总览与模块边界 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_01_project_overview_main
+        title: "项目总览与模块边界"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_02_registration
+    title: "TEST 宏与测试注册"
+    filename: "02_registration.md"
+    description: "TEST 宏与测试注册 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_02_registration_main
+        title: "TEST 宏与测试注册"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_03_execution
+    title: "RUN_ALL_TESTS 执行路径"
+    filename: "03_execution.md"
+    description: "RUN_ALL_TESTS 执行路径 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_03_execution_main
+        title: "RUN_ALL_TESTS 执行路径"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_04_fixtures_environment
+    title: "Fixture、Environment 与事件监听"
+    filename: "04_fixtures_environment.md"
+    description: "Fixture、Environment 与事件监听 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_04_fixtures_environment_main
+        title: "Fixture、Environment 与事件监听"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_05_assertions_results
+    title: "断言与结果收集"
+    filename: "05_assertions_results.md"
+    description: "断言与结果收集 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_05_assertions_results_main
+        title: "断言与结果收集"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_06_test_variants
+    title: "参数化、Typed、Death 与动态测试"
+    filename: "06_test_variants.md"
+    description: "参数化、Typed、Death 与动态测试 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_06_test_variants_main
+        title: "参数化、Typed、Death 与动态测试"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_07_gmock_runtime
+    title: "GoogleMock 运行时"
+    filename: "07_gmock_runtime.md"
+    description: "GoogleMock 运行时 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_07_gmock_runtime_main
+        title: "GoogleMock 运行时"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_08_expectations
+    title: "Expectation 匹配与调用约束"
+    filename: "08_expectations.md"
+    description: "Expectation 匹配与调用约束 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_08_expectations_main
+        title: "Expectation 匹配与调用约束"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_09_actions
+    title: "Action 动作模型"
+    filename: "09_actions.md"
+    description: "Action 动作模型 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_09_actions_main
+        title: "Action 动作模型"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_10_matchers
+    title: "Matcher 匹配器机制"
+    filename: "10_matchers.md"
+    description: "Matcher 匹配器机制 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_10_matchers_main
+        title: "Matcher 匹配器机制"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_11_build_testing
+    title: "构建与项目自测"
+    filename: "11_build_testing.md"
+    description: "构建与项目自测 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_11_build_testing_main
+        title: "构建与项目自测"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_12_aggregate_units
+    title: "聚合编译单元与测试入口"
+    filename: "12_aggregate_units.md"
+    description: "聚合编译单元与测试入口 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_12_aggregate_units_main
+        title: "聚合编译单元与测试入口"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+  - id: googletest_13_test_execution_lifecycle
+    title: "GoogleTest 测试执行生命周期"
+    filename: "13_test_execution_lifecycle.md"
+    description: "GoogleTest 测试执行生命周期 的源码、对象关系和执行路径"
+    source_files: ["README.md", "CMakeLists.txt", "googletest/src/**", "googletest/include/gtest/**", "googlemock/src/**", "googlemock/include/gmock/**"]
+    sections:
+      - id: googletest_13_test_execution_lifecycle_main
+        title: "GoogleTest 测试执行生命周期"
+        description: "基于冻结源码 commit 的分析"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart", "sequence"]
+    related_pages: []
+notes:
+  - "冻结源码 commit 为 9771e129724f0a568fd254ca774a6cc55bf09e8d。"
+  - "无原生 subagent 调度能力，本轮按页面顺序执行。"
+  - "架构关系逐边审计、Mermaid.js 渲染和本地构建仍需完成。"

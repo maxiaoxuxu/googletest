@@ -1,0 +1,378 @@
+{
+  "schema_version": "1.0",
+  "repository": {
+    "full_name": "maxiaoxuxu/googletest",
+    "source_ref": "9771e129724f0a568fd254ca774a6cc55bf09e8d"
+  },
+  "semantic_review": {
+    "status": "incomplete",
+    "method": "not yet independently reconstructed for every page",
+    "reviewer": "orchestrator"
+  },
+  "pages": [
+    {
+      "page_id": "googletest_01_project_overview",
+      "filename": "01_project_overview.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_01_project_overview_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_02_registration",
+      "filename": "02_registration.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_02_registration_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_03_execution",
+      "filename": "03_execution.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_03_execution_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_04_fixtures_environment",
+      "filename": "04_fixtures_environment.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_04_fixtures_environment_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_05_assertions_results",
+      "filename": "05_assertions_results.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_05_assertions_results_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_06_test_variants",
+      "filename": "06_test_variants.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_06_test_variants_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_07_gmock_runtime",
+      "filename": "07_gmock_runtime.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_07_gmock_runtime_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_08_expectations",
+      "filename": "08_expectations.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_08_expectations_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_09_actions",
+      "filename": "09_actions.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_09_actions_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_10_matchers",
+      "filename": "10_matchers.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_10_matchers_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_11_build_testing",
+      "filename": "11_build_testing.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_11_build_testing_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_12_aggregate_units",
+      "filename": "12_aggregate_units.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_12_aggregate_units_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    },
+    {
+      "page_id": "googletest_13_test_execution_lifecycle",
+      "filename": "13_test_execution_lifecycle.md",
+      "diagram_count": 0,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "等待本地跨文件审计和逐边复核"
+        }
+      ],
+      "claims": [
+        {
+          "id": "googletest_13_test_execution_lifecycle_main",
+          "statement": "本页源码主题与执行路径",
+          "importance": "critical",
+          "status": "unreviewed",
+          "evidence": [],
+          "representation": {
+            "kind": "prose",
+            "location": "正文"
+          }
+        }
+      ],
+      "relationships": [],
+      "diagram_audits": []
+    }
+  ]
+}
