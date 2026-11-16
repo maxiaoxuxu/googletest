@@ -1,0 +1,544 @@
+{
+  "schema_version": "1.0",
+  "repository": {
+    "full_name": "maxiaoxuxu/googletest",
+    "source_ref": "277cfa07d637aac85a388d1cb0c6adb585a1432e"
+  },
+  "semantic_review": {
+    "status": "completed",
+    "method": "same-agent second pass; re-opened CMakeLists and all four aggregate/entry source files",
+    "reviewer": "orchestrator"
+  },
+  "pages": [
+    {
+      "page_id": "googletest_02_aggregate_units",
+      "filename": "02_aggregate_units.md",
+      "diagram_count": 2,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest-all.cc",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "gtest-all.cc"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googlemock/src/gmock-all.cc",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "gmock-all.cc"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googletest/src/gtest_main.cc",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "main",
+            "setup",
+            "loop",
+            "InitGoogleTest",
+            "RUN_ALL_TESTS"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googlemock/src/gmock_main.cc",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "main",
+            "_tmain",
+            "setup",
+            "loop",
+            "InitGoogleMock",
+            "RUN_ALL_TESTS"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googletest/CMakeLists.txt",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "gtest",
+            "gtest_main"
+          ],
+          "reason": ""
+        },
+        {
+          "path": "googlemock/CMakeLists.txt",
+          "disposition": "covered",
+          "symbols_reviewed": [
+            "gmock",
+            "gmock_main",
+            "MSVC/non-MSVC branches"
+          ],
+          "reason": ""
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim-aggregate",
+          "statement": "gtest-all.cc and gmock-all.cc aggregate implementation .cc files behind a single compilation unit.",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest-all.cc",
+              "start_line": 33,
+              "end_line": 49
+            },
+            {
+              "path": "googlemock/src/gmock-all.cc",
+              "start_line": 33,
+              "end_line": 46
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "Aggregate translation-unit section"
+          }
+        },
+        {
+          "id": "claim-gtest-main",
+          "statement": "gtest_main provides the ordinary main entry that initializes GoogleTest and runs tests.",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 61,
+              "end_line": 64
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "GoogleTest main entry section"
+          }
+        },
+        {
+          "id": "claim-gmock-main",
+          "statement": "gmock_main initializes GoogleMock (which also initializes GoogleTest) and then calls RUN_ALL_TESTS.",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock_main.cc",
+              "start_line": 64,
+              "end_line": 71
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "GoogleMock main entry section"
+          }
+        },
+        {
+          "id": "claim-platform",
+          "statement": "MSVC and non-MSVC build gmock/gmock_main using different source and link compositions.",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 85,
+              "end_line": 103
+            }
+          ],
+          "representation": {
+            "kind": "table",
+            "location": "Platform-specific CMake target table"
+          }
+        },
+        {
+          "id": "claim-platform-entry",
+          "statement": "Arduino, QuRT, and Windows Mobile use alternate entry forms in the main source files.",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 34,
+              "end_line": 57
+            },
+            {
+              "path": "googlemock/src/gmock_main.cc",
+              "start_line": 35,
+              "end_line": 73
+            }
+          ],
+          "representation": {
+            "kind": "table",
+            "location": "Platform-specific entrypoint table"
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "id": "rel-gtest-aggregate",
+          "kind": "compile_input",
+          "source": "gtest target",
+          "target": "gtest-all.cc",
+          "condition": "all platforms",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 123,
+              "end_line": 124
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: gtest -> gtest-all.cc"
+          }
+        },
+        {
+          "id": "rel-gtest-main-compile",
+          "kind": "compile_input",
+          "source": "gtest_main target",
+          "target": "gtest_main.cc",
+          "condition": "all platforms",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 138,
+              "end_line": 138
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: gtest_main -> gtest_main.cc"
+          }
+        },
+        {
+          "id": "rel-gtest-main-link",
+          "kind": "link_dependency",
+          "source": "gtest_main target",
+          "target": "gtest target",
+          "condition": "all platforms",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 151,
+              "end_line": 151
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: gtest_main -> gtest"
+          }
+        },
+        {
+          "id": "rel-gmock-aggregate",
+          "kind": "compile_input",
+          "source": "gmock target",
+          "target": "gmock-all.cc",
+          "condition": "non-MSVC",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 97,
+              "end_line": 97
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: non-MSVC gmock -> gmock-all.cc"
+          }
+        },
+        {
+          "id": "rel-gmock-link-gtest",
+          "kind": "link_dependency",
+          "source": "gmock target",
+          "target": "gtest target",
+          "condition": "non-MSVC",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 98,
+              "end_line": 98
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: non-MSVC gmock -> gtest"
+          }
+        },
+        {
+          "id": "rel-gmock-main-compile",
+          "kind": "compile_input",
+          "source": "gmock_main target",
+          "target": "gmock_main.cc",
+          "condition": "non-MSVC",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 100,
+              "end_line": 100
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: non-MSVC gmock_main -> gmock_main.cc"
+          }
+        },
+        {
+          "id": "rel-gmock-main-link",
+          "kind": "link_dependency",
+          "source": "gmock_main target",
+          "target": "gmock target",
+          "condition": "non-MSVC",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 101,
+              "end_line": 101
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: non-MSVC gmock_main -> gmock"
+          }
+        },
+        {
+          "id": "rel-msvc-gmock",
+          "kind": "compile_input",
+          "source": "MSVC gmock target",
+          "target": "gtest-all.cc + gmock-all.cc",
+          "condition": "MSVC",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 86,
+              "end_line": 89
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: MSVC gmock"
+          }
+        },
+        {
+          "id": "rel-msvc-gmock-main",
+          "kind": "compile_input",
+          "source": "MSVC gmock_main target",
+          "target": "gtest-all.cc + gmock-all.cc + gmock_main.cc",
+          "condition": "MSVC",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 91,
+              "end_line": 95
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Build target composition diagram: MSVC gmock_main"
+          }
+        },
+        {
+          "id": "rel-gtest-entry",
+          "kind": "entrypoint",
+          "source": "gtest_main.cc main()",
+          "target": "InitGoogleTest -> RUN_ALL_TESTS",
+          "condition": "ordinary platforms",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 61,
+              "end_line": 64
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Runtime entry diagram: gtest_main path"
+          }
+        },
+        {
+          "id": "rel-gmock-entry",
+          "kind": "entrypoint",
+          "source": "gmock_main.cc main()",
+          "target": "InitGoogleMock -> RUN_ALL_TESTS",
+          "condition": "ordinary platforms",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock_main.cc",
+              "start_line": 64,
+              "end_line": 71
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "Runtime entry diagram: gmock_main path"
+          }
+        },
+        {
+          "id": "rel-gmock-initializes-gtest",
+          "kind": "initialization",
+          "source": "InitGoogleMock",
+          "target": "GoogleTest initialization",
+          "condition": "gmock_main path",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock_main.cc",
+              "start_line": 67,
+              "end_line": 69
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "GoogleMock main entry explanation"
+          }
+        },
+        {
+          "id": "rel-gtest-arduino-entry",
+          "kind": "platform_branch",
+          "source": "gtest_main.cc",
+          "target": "setup() -> InitGoogleTest; loop() -> RUN_ALL_TESTS",
+          "condition": "ESP8266/ESP32/NRF52 with ARDUINO",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 34,
+              "end_line": 48
+            }
+          ],
+          "representation": {
+            "kind": "table",
+            "location": "Platform-specific entrypoint table"
+          }
+        },
+        {
+          "id": "rel-gtest-qurt-entry",
+          "kind": "platform_branch",
+          "source": "gtest_main.cc",
+          "target": "main() without argc/argv -> InitGoogleTest -> RUN_ALL_TESTS",
+          "condition": "GTEST_OS_QURT",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 50,
+              "end_line": 57
+            }
+          ],
+          "representation": {
+            "kind": "table",
+            "location": "Platform-specific entrypoint table"
+          }
+        },
+        {
+          "id": "rel-gmock-arduino-entry",
+          "kind": "platform_branch",
+          "source": "gmock_main.cc",
+          "target": "setup() -> InitGoogleMock; loop() -> RUN_ALL_TESTS",
+          "condition": "ESP8266/ESP32/NRF52 with ARDUINO",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock_main.cc",
+              "start_line": 35,
+              "end_line": 49
+            }
+          ],
+          "representation": {
+            "kind": "table",
+            "location": "Platform-specific entrypoint table"
+          }
+        },
+        {
+          "id": "rel-gmock-mobile-entry",
+          "kind": "platform_branch",
+          "source": "gmock_main.cc",
+          "target": "_tmain(int, TCHAR**)",
+          "condition": "GTEST_OS_WINDOWS_MOBILE",
+          "importance": "supporting",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock_main.cc",
+              "start_line": 60,
+              "end_line": 66
+            }
+          ],
+          "representation": {
+            "kind": "table",
+            "location": "Platform-specific entrypoint table"
+          }
+        }
+      ],
+      "diagram_audits": [
+        {
+          "diagram_id": "build-target-composition",
+          "scope": "CMake compile inputs and link dependencies for gtest/gmock and their main targets, including MSVC/non-MSVC differences",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "rel-gtest-aggregate",
+            "rel-gtest-main-compile",
+            "rel-gtest-main-link",
+            "rel-gmock-aggregate",
+            "rel-gmock-link-gtest",
+            "rel-gmock-main-compile",
+            "rel-gmock-main-link",
+            "rel-msvc-gmock",
+            "rel-msvc-gmock-main"
+          ],
+          "represented_relationship_ids": [
+            "rel-gtest-aggregate",
+            "rel-gtest-main-compile",
+            "rel-gtest-main-link",
+            "rel-gmock-aggregate",
+            "rel-gmock-link-gtest",
+            "rel-gmock-main-compile",
+            "rel-gmock-main-link",
+            "rel-msvc-gmock",
+            "rel-msvc-gmock-main"
+          ],
+          "omissions": []
+        },
+        {
+          "diagram_id": "runtime-test-entry",
+          "scope": "Ordinary-platform gtest_main and gmock_main execution entry paths",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "rel-gtest-entry",
+            "rel-gmock-entry"
+          ],
+          "represented_relationship_ids": [
+            "rel-gtest-entry",
+            "rel-gmock-entry"
+          ],
+          "omissions": []
+        }
+      ]
+    }
+  ]
+}
