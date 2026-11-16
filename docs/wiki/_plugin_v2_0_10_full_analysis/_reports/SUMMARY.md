@@ -19,8 +19,8 @@
 
 ## New focus pages
 
-- `12_aggregate_units.md`: aggregate translation units, CMake target compile inputs/link dependencies, gtest_main/gmock_main entry points, and platform-specific entry forms.
-- `13_test_execution_lifecycle.md`: static registration before main, parameterized registration after flag parsing, RunAllTests → TestSuite::Run → TestInfo::Run → Test::Run, setup/teardown scopes, fail-fast/skip, listener events and reporting.
+- `12_聚合编译单元与测试入口.md`: aggregate translation units, CMake target compile inputs/link dependencies, gtest_main/gmock_main entry points, and platform-specific entry forms.
+- `13_测试执行完整生命周期.md`: static registration before main, parameterized registration after flag parsing, RunAllTests → TestSuite::Run → TestInfo::Run → Test::Run, setup/teardown scopes, fail-fast/skip, listener events and reporting.
 
 ## Quality status
 

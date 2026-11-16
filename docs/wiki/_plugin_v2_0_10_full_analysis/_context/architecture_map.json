@@ -7,7 +7,7 @@
   "pages": [
     {
       "page_id": "googletest_01_project_overview",
-      "filename": "01_project_overview.md",
+      "filename": "01_项目总览与模块边界.md",
       "source_files": [
         "README.md",
         "CMakeLists.txt",
@@ -20,7 +20,7 @@
     },
     {
       "page_id": "googletest_02_registration",
-      "filename": "02_registration.md",
+      "filename": "02_测试注册机制.md",
       "source_files": [
         "googletest/include/gtest/gtest.h",
         "googletest/include/gtest/internal/gtest-internal.h",
@@ -31,7 +31,7 @@
     },
     {
       "page_id": "googletest_03_execution",
-      "filename": "03_execution.md",
+      "filename": "03_测试执行路径.md",
       "source_files": [
         "googletest/src/gtest_main.cc",
         "googletest/src/gtest.cc",
@@ -41,7 +41,7 @@
     },
     {
       "page_id": "googletest_04_fixtures_environment",
-      "filename": "04_fixtures_environment.md",
+      "filename": "04_测试夹具与环境.md",
       "source_files": [
         "googletest/include/gtest/gtest.h",
         "googletest/src/gtest.cc"
@@ -50,7 +50,7 @@
     },
     {
       "page_id": "googletest_05_assertions_results",
-      "filename": "05_assertions_results.md",
+      "filename": "05_断言与测试结果.md",
       "source_files": [
         "docs/primer.md",
         "googletest/include/gtest/gtest.h",
@@ -61,7 +61,7 @@
     },
     {
       "page_id": "googletest_06_test_variants",
-      "filename": "06_test_variants.md",
+      "filename": "06_测试类型与参数化.md",
       "source_files": [
         "googletest/include/gtest/gtest-param-test.h",
         "googletest/include/gtest/internal/gtest-param-util.h",
@@ -73,7 +73,7 @@
     },
     {
       "page_id": "googletest_07_gmock_runtime",
-      "filename": "07_gmock_runtime.md",
+      "filename": "07_GoogleMock运行时.md",
       "source_files": [
         "googlemock/include/gmock/gmock.h",
         "googlemock/include/gmock/gmock-function-mocker.h",
@@ -84,7 +84,7 @@
     },
     {
       "page_id": "googletest_08_expectations",
-      "filename": "08_expectations.md",
+      "filename": "08_期望与调用约束.md",
       "source_files": [
         "googlemock/include/gmock/gmock-spec-builders.h",
         "googlemock/src/gmock-spec-builders.cc"
@@ -93,7 +93,7 @@
     },
     {
       "page_id": "googletest_09_actions",
-      "filename": "09_actions.md",
+      "filename": "09_Action动作模型.md",
       "source_files": [
         "googlemock/include/gmock/gmock-actions.h",
         "googlemock/include/gmock/gmock-spec-builders.h"
@@ -102,7 +102,7 @@
     },
     {
       "page_id": "googletest_10_matchers",
-      "filename": "10_matchers.md",
+      "filename": "10_Matcher匹配器机制.md",
       "source_files": [
         "googletest/include/gtest/gtest-matchers.h",
         "googlemock/include/gmock/gmock-matchers.h",
@@ -112,7 +112,7 @@
     },
     {
       "page_id": "googletest_11_build_testing",
-      "filename": "11_build_testing.md",
+      "filename": "11_构建与项目自测.md",
       "source_files": [
         "README.md",
         "CMakeLists.txt",
@@ -127,7 +127,7 @@
     },
     {
       "page_id": "googletest_12_aggregate_units",
-      "filename": "12_aggregate_units.md",
+      "filename": "12_聚合编译单元与测试入口.md",
       "source_files": [
         "googletest/src/gtest-all.cc",
         "googlemock/src/gmock-all.cc",
@@ -140,7 +140,7 @@
     },
     {
       "page_id": "googletest_13_test_execution_lifecycle",
-      "filename": "13_test_execution_lifecycle.md",
+      "filename": "13_测试执行完整生命周期.md",
       "source_files": [
         "googletest/src/gtest_main.cc",
         "googletest/include/gtest/gtest.h",
