@@ -1,11 +1,11 @@
-# GoogleTest / GoogleMock 源码 Wiki（插件 2.0.13 验证）
+# GoogleTest / GoogleMock 源码 Wiki（DeepWiki 2.0.13 验证）
 
 - Repository: maxiaoxuxu/googletest
 - Branch: test
 - Frozen source commit: 5feffc24e4d6c49608d241d53cacb2c8143d2beb
-- Plugin: DeepWiki Codebase Wiki 2.0.13
-- Locale: zh-CN
-- Output: docs/wiki/_plugin_v2_0_13_zh_CN_full_validation/
+- Rule baseline: DeepWiki Codebase Wiki 2.0.13
+- Locale / filename language: zh-CN
+- Output directory: docs/wiki/_plugin_v2_0_13_zh_CN_full_validation/
 
 ## 页面
 
@@ -18,13 +18,14 @@
 
 ## 本轮重点
 
-重点复核“聚合编译单元与测试入口”，把聚合 .cc、构建 target、程序入口三个层面拆开。另行审计 CMake 与 Bazel 的差异，特别是 Bazel //:gtest_main 使用 googlemock/src/gmock_main.cc，而 CMake gtest_main 使用 googletest/src/gtest_main.cc。
+本轮重点复核“聚合编译单元与测试入口”，把聚合 .cc、构建 target、程序入口三个层面分开。特别记录当前 test 分支中：
+- CMake 的 gtest_main 编译 googletest/src/gtest_main.cc。
+- Bazel 的 //:gtest_main 编译 googlemock/src/gmock_main.cc。
+- Bazel 的 //:gtest glob 收集 GoogleTest 与 GoogleMock 普通实现 .cc，并排除四个 aggregate/main .cc。
+- CMake 的 GMock 在 MSVC / 非 MSVC 下采用不同编译输入和链接关系。
 
-## 产物
+## 运行说明
 
-- toc.yaml：本次页面目录和 zh-CN 文件名声明
-- _context/architecture_map.json：页面映射的源码文件与关系
-- _reports/architecture_coverage.json：逐页声明的证据与图关系覆盖
-- _reports/SUMMARY.md：验证状态和边界
+本轮在当前会话中通过 GitHub 源码接口读取固定 commit，按 DeepWiki 2.0.13 的 TOC、中文文件名、PAGE_ID/AUTOGEN、架构关系图和覆盖报告规则组织验证产物。当前会话没有可直接调用已安装插件运行时的执行入口，因此这组文件用于验证规则/产物契约与源码分析质量，**不能冒称为一次插件运行时自动执行记录**。
 
-本目录是独立的新验证 run，不覆盖 docs/wiki/ 中已有页面和历史 run。
+本目录是独立的新验证 run，不覆盖 docs/wiki/ 中已有页面、根目录文件或历史 run。
