@@ -720,15 +720,9 @@
           "importance": "critical",
           "evidence": [
             {
-              "path": "googletest/include/gtest/gtest.h",
-              "start_line": 2336,
-              "end_line": 2349,
-              "contains": "inline int RUN_ALL_TESTS() { return ::testing::UnitTest::GetInstance()->Run(); }"
-            },
-            {
               "path": "googletest/src/gtest.cc",
-              "start_line": 5940,
-              "end_line": 5980,
+              "start_line": 5985,
+              "end_line": 6005,
               "contains": "FilterTests(should_shard ? HONOR_SHARDING_PROTOCOL"
             }
           ],
@@ -1288,8 +1282,8 @@
             {
               "path": "googletest/test/BUILD.bazel",
               "start_line": 45,
-              "end_line": 105,
-              "contains": "deps = [\":gtest_main\"],"
+              "end_line": 115,
+              "contains": "deps = [\"//:gtest_main\"],"
             }
           ],
           "representation": {
