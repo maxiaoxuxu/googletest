@@ -9,8 +9,8 @@
       "page_id": "googletest_build_architecture",
       "filename": "01_项目结构与构建总览.md",
       "source_files": [
-        "CMakeLists.txt",
         "BUILD.bazel",
+        "CMakeLists.txt",
         "googlemock/CMakeLists.txt",
         "googletest/CMakeLists.txt"
       ],
@@ -35,7 +35,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "build-selection-and-targets",
-            "diagram_fragment": "ROOT -->|selects googlemock subproject| GM"
+            "diagram_fragment": "-->|selects googlemock subproject|"
           }
         },
         {
@@ -58,7 +58,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "build-selection-and-targets",
-            "diagram_fragment": "GM -->|adds googletest subdirectory| GT"
+            "diagram_fragment": "-->|adds googletest subdirectory|"
           }
         },
         {
@@ -81,7 +81,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "build-selection-and-targets",
-            "diagram_fragment": "GT -->|compiles gtest-all.cc| GTA"
+            "diagram_fragment": "-->|compiles gtest-all.cc|"
           }
         },
         {
@@ -104,7 +104,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "build-selection-and-targets",
-            "diagram_fragment": "GTM -->|compiles gtest_main.cc| GTMC"
+            "diagram_fragment": "-->|compiles gtest_main.cc|"
           }
         },
         {
@@ -127,7 +127,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "build-selection-and-targets",
-            "diagram_fragment": "BZ_GTEST -->|globs GTest and GMock sources| SRC"
+            "diagram_fragment": "-->|globs GTest and GMock sources|"
           }
         },
         {
@@ -150,7 +150,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "build-selection-and-targets",
-            "diagram_fragment": "BZ_GTEST -->|excludes aggregate and main files| EXCLUDED"
+            "diagram_fragment": "-->|excludes aggregate and main files|"
           }
         },
         {
@@ -173,7 +173,51 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "build-selection-and-targets",
-            "diagram_fragment": "BZ_MAIN -->|compiles gmock_main.cc| GMMC"
+            "diagram_fragment": "-->|compiles gmock_main.cc|"
+          }
+        },
+        {
+          "id": "build-cmake-gtest-main-link",
+          "kind": "link_dependency",
+          "source": "CMake target gtest_main",
+          "target": "CMake target gtest",
+          "condition": "所有 CMake 配置",
+          "importance": "supporting",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 138,
+              "end_line": 150,
+              "contains": "target_link_libraries(gtest_main PUBLIC gtest)"
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "CMake 的库与入口 target",
+            "anchor": "PUBLIC 链接 gtest"
+          }
+        },
+        {
+          "id": "build-cmake-gmock-platform",
+          "kind": "platform_conditional_build",
+          "source": "CMake target gmock / gmock_main",
+          "target": "GTest/GMock aggregate files and library targets",
+          "condition": "MSVC 与非 MSVC 使用不同源文件/链接组织",
+          "importance": "supporting",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 84,
+              "end_line": 104,
+              "contains": "if (MSVC)"
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "CMake 的库与入口 target",
+            "anchor": "MSVC 分支不套用非 MSVC 的 target_link_libraries 结论"
           }
         }
       ]
@@ -210,7 +254,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "aggregate-units-and-entrypoints",
-            "diagram_fragment": "GTA -->|textually includes implementation files| GT_IMPL"
+            "diagram_fragment": "-->|textually includes implementation files|"
           }
         },
         {
@@ -233,7 +277,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "aggregate-units-and-entrypoints",
-            "diagram_fragment": "GMA -->|textually includes implementation files| GM_IMPL"
+            "diagram_fragment": "-->|textually includes implementation files|"
           }
         },
         {
@@ -256,7 +300,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "aggregate-units-and-entrypoints",
-            "diagram_fragment": "GT_MAIN -->|defines main and initializes| INIT_GT"
+            "diagram_fragment": "-->|defines main and initializes|"
           }
         },
         {
@@ -279,7 +323,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "aggregate-units-and-entrypoints",
-            "diagram_fragment": "GM_MAIN -->|defines main and initializes| INIT_GM"
+            "diagram_fragment": "-->|defines main and initializes|"
           }
         },
         {
@@ -302,7 +346,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "aggregate-units-and-entrypoints",
-            "diagram_fragment": "INIT_GM -->|initializes GoogleTest first| INIT_GT"
+            "diagram_fragment": "-->|initializes GoogleTest first|"
           }
         },
         {
@@ -325,7 +369,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "aggregate-units-and-entrypoints",
-            "diagram_fragment": "BZ_MAIN -->|uses gmock_main.cc as entry source| GM_MAIN"
+            "diagram_fragment": "-->|uses gmock_main.cc as entry source|"
           }
         }
       ]
@@ -360,7 +404,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "test-macro-static-registration",
-            "diagram_fragment": "TEST -->|expands to| GTEST_TEST"
+            "diagram_fragment": "-->|expands to|"
           }
         },
         {
@@ -383,7 +427,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "test-macro-static-registration",
-            "diagram_fragment": "GTEST_TEST_ -->|defines static test_info_| STATIC_INFO"
+            "diagram_fragment": "-->|defines static test_info_|"
           }
         },
         {
@@ -406,7 +450,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "test-macro-static-registration",
-            "diagram_fragment": "STATIC_INFO -->|calls during static initialization| MAKE_REGISTER"
+            "diagram_fragment": "-->|calls during static initialization|"
           }
         },
         {
@@ -429,7 +473,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "test-macro-static-registration",
-            "diagram_fragment": "MAKE_REGISTER -->|adds TestInfo| ADD_INFO"
+            "diagram_fragment": "-->|adds TestInfo|"
           }
         },
         {
@@ -452,7 +496,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "test-macro-static-registration",
-            "diagram_fragment": "ADD_INFO -->|groups TestInfo under| TEST_SUITE"
+            "diagram_fragment": "-->|groups TestInfo under|"
           }
         },
         {
@@ -475,7 +519,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "test-macro-static-registration",
-            "diagram_fragment": "POST_INIT -->|registers parameterized tests| PARAM_REG"
+            "diagram_fragment": "-->|registers parameterized tests|"
           }
         }
       ]
@@ -508,7 +552,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "run-all-tests-call-chain",
-            "diagram_fragment": "RUN_MACRO -->|calls| UNIT_RUN"
+            "diagram_fragment": "-->|calls|"
           }
         },
         {
@@ -531,7 +575,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "run-all-tests-call-chain",
-            "diagram_fragment": "UNIT_RUN -->|invokes through exception wrapper| RUN_ALL"
+            "diagram_fragment": "-->|invokes through exception wrapper|"
           }
         },
         {
@@ -554,7 +598,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "run-all-tests-call-chain",
-            "diagram_fragment": "RUN_ALL -->|filters and selects tests| FILTER"
+            "diagram_fragment": "-->|filters and selects tests|"
           }
         },
         {
@@ -577,7 +621,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "run-all-tests-call-chain",
-            "diagram_fragment": "RUN_ALL -->|runs selected suites| SUITE_RUN"
+            "diagram_fragment": "-->|runs selected suites|"
           }
         },
         {
@@ -600,7 +644,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "run-all-tests-call-chain",
-            "diagram_fragment": "SUITE_RUN -->|runs each TestInfo| INFO_RUN"
+            "diagram_fragment": "-->|runs each TestInfo|"
           }
         },
         {
@@ -623,7 +667,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "run-all-tests-call-chain",
-            "diagram_fragment": "INFO_RUN -->|runs fixture object| TEST_RUN"
+            "diagram_fragment": "-->|runs fixture object|"
           }
         },
         {
@@ -646,7 +690,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "run-all-tests-call-chain",
-            "diagram_fragment": "TEST_RUN -->|calls SetUp then conditional TestBody and TearDown| TEST_BODY"
+            "diagram_fragment": "-->|calls SetUp then conditional TestBody and TearDown|"
           }
         }
       ]
@@ -678,7 +722,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "environment-and-event-reporting",
-            "diagram_fragment": "RUN_ALL -->|sets up global environments| ENV_SETUP"
+            "diagram_fragment": "-->|sets up global environments|"
           }
         },
         {
@@ -701,7 +745,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "environment-and-event-reporting",
-            "diagram_fragment": "RUN_ALL -->|tears down environments in reverse order| ENV_TEARDOWN"
+            "diagram_fragment": "-->|tears down environments in reverse order|"
           }
         },
         {
@@ -724,7 +768,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "environment-and-event-reporting",
-            "diagram_fragment": "SUITE -->|brackets TestInfo loop with suite setup and teardown| SUITE_FIXTURE"
+            "diagram_fragment": "-->|brackets TestInfo loop with suite setup and teardown|"
           }
         },
         {
@@ -747,7 +791,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "environment-and-event-reporting",
-            "diagram_fragment": "REPORTER -->|stores result in| TEST_RESULT"
+            "diagram_fragment": "-->|stores result in|"
           }
         },
         {
@@ -770,7 +814,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "environment-and-event-reporting",
-            "diagram_fragment": "REPEATER -->|dispatches end callbacks in reverse order| LISTENERS"
+            "diagram_fragment": "-->|dispatches end callbacks in reverse order|"
           }
         },
         {
@@ -793,7 +837,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "environment-and-event-reporting",
-            "diagram_fragment": "ITERATION_END -->|prints pass skip and failure counts| SUMMARY"
+            "diagram_fragment": "-->|prints pass skip and failure counts|"
           }
         }
       ]
@@ -828,7 +872,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "gmock-integration-and-test-targets",
-            "diagram_fragment": "GMOCK -->|public links gtest on non-MSVC| GTEST"
+            "diagram_fragment": "-->|public links gtest on non-MSVC|"
           }
         },
         {
@@ -851,7 +895,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "gmock-integration-and-test-targets",
-            "diagram_fragment": "GMOCK_MAIN -->|public links gmock on non-MSVC| GMOCK"
+            "diagram_fragment": "-->|public links gmock on non-MSVC|"
           }
         },
         {
@@ -874,7 +918,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "gmock-integration-and-test-targets",
-            "diagram_fragment": "INIT_GMOCK -->|calls InitGoogleTest first| INIT_GTEST"
+            "diagram_fragment": "-->|calls InitGoogleTest first|"
           }
         },
         {
@@ -897,7 +941,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "gmock-integration-and-test-targets",
-            "diagram_fragment": "CMAKE_TEST -->|links gtest_main| GT_MAIN"
+            "diagram_fragment": "-->|links gtest_main|"
           }
         },
         {
@@ -920,7 +964,7 @@
             "kind": "diagram",
             "location": "本页关系图",
             "diagram_id": "gmock-integration-and-test-targets",
-            "diagram_fragment": "BAZEL_TEST -->|depends on gtest_main| BZ_MAIN"
+            "diagram_fragment": "-->|depends on gtest_main|"
           }
         }
       ]
