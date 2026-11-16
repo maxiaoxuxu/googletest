@@ -39,6 +39,7 @@
 ```mermaid
 graph TD
     REG["Static test registration before main"]
+    MAKE_REG["MakeAndRegisterTestInfo / AddTestInfo"]
     MAIN["gtest_main.cc: main"]
     INIT["InitGoogleTest"]
     POST["PostFlagParsingInit"]
@@ -47,12 +48,13 @@ graph TD
     SUITES["TestSuite / TestInfo execution"]
     REPORT["Iteration result reporting"]
     CLEAN["Environment teardown and listener finish"]
-    REG -->|registers TestInfo| MAIN
+    REG -->|calls during static initialization| MAKE_REG
+    MAKE_REG -->|registered before main| MAIN
     MAIN -->|calls| INIT
     INIT -->|parses flags and initializes| POST
     POST -->|expands parameterized tests and configures listeners| RUN
-    RUN -->|enters UnitTest::Run| GLOBAL
-    GLOBAL -->|starts selected suites| SUITES
+    RUN -->|calls Environment::SetUp for selected tests| GLOBAL
+    GLOBAL -->|then enters selected suites| SUITES
     SUITES -->|returns test results| REPORT
     REPORT -->|finishes iteration and program| CLEAN
 ```
@@ -80,6 +82,7 @@ graph TD
     UNIT["UnitTest::Run"]
     ALL["UnitTestImpl::RunAllTests"]
     SUITE["TestSuite::Run"]
+    SETUP_SUITE["SetUpTestSuite"]
     INFO["TestInfo::Run"]
     FACTORY["TestFactoryBase::CreateTest"]
     TEST["Test::Run"]
@@ -88,10 +91,11 @@ graph TD
     TEARDOWN["Test::TearDown"]
     DELETE["Test fixture destructor"]
     MAIN -->|calls| INIT
-    INIT -->|returns to main| MACRO
+    INIT -->|returns to main; then main calls| MACRO
     MACRO -->|calls UnitTest::Run| UNIT
     UNIT -->|calls RunAllTests through exception wrapper| ALL
     ALL -->|iterates selected suites| SUITE
+    SUITE -->|runs| SETUP_SUITE
     SUITE -->|iterates registered TestInfo| INFO
     INFO -->|creates fixture| FACTORY
     INFO -->|runs fixture| TEST

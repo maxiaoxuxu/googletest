@@ -174,7 +174,7 @@
             "kind": "diagram",
             "location": "test-call-hierarchy",
             "diagram_id": "test-call-hierarchy",
-            "diagram_fragment": "MAIN -->|calls| INIT"
+            "diagram_fragment": "MAIN -->|after InitGoogleTest returns, invokes| MACRO"
           }
         },
         {
@@ -356,7 +356,7 @@
             "kind": "diagram",
             "location": "execution-lifecycle-overview",
             "diagram_id": "execution-lifecycle-overview",
-            "diagram_fragment": "GLOBAL -->|starts selected suites| SUITES"
+            "diagram_fragment": "RUN -->|calls Environment::SetUp for selected tests| GLOBAL"
           }
         },
         {
@@ -402,7 +402,7 @@
             "kind": "diagram",
             "location": "test-call-hierarchy",
             "diagram_id": "test-call-hierarchy",
-            "diagram_fragment": "SUITE -->|iterates registered TestInfo| INFO"
+            "diagram_fragment": "SUITE -->|runs| SETUP_SUITE"
           }
         },
         {
@@ -585,7 +585,7 @@
             "kind": "diagram",
             "location": "execution-lifecycle-overview",
             "diagram_id": "execution-lifecycle-overview",
-            "diagram_fragment": "REG -->|registers TestInfo| MAIN"
+            "diagram_fragment": "REG -->|calls during static initialization| MAKE_REG"
           }
         },
         {
@@ -713,7 +713,7 @@
               "path": "googletest/src/gtest.cc",
               "start_line": 3703,
               "end_line": 3734,
-              "contains": "printf(\"%s.\\\\n\", FormatTestCount(unit_test.successful_test_count()).c_str());"
+              "contains": "FormatTestCount(unit_test.successful_test_count()).c_str()"
             }
           ],
           "page_id": "googletest_03_test_execution_lifecycle",
