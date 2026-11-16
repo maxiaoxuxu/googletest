@@ -2,8 +2,8 @@
 <details>
 <summary>📚 Relevant source files</summary>
 
-- [gtest-all.cc:33-49](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest-all.cc#L33-L49)
-- [gmock-all.cc:33-46](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock-all.cc#L33-L46)
+- [gtest-all.cc:36-49](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest-all.cc#L33-L49)
+- [gmock-all.cc:36-46](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock-all.cc#L33-L46)
 - [gtest_main.cc:34-66](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest_main.cc#L34-L66)
 - [gmock_main.cc:35-73](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock_main.cc#L35-L73)
 - [googletest/CMakeLists.txt:123-151](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/CMakeLists.txt#L123-L151)
@@ -20,9 +20,9 @@
 <!-- BEGIN:AUTOGEN googletest_02_aggregate_units_composition -->
 ## 1. 聚合编译单元：把多个实现文件合并到一个编译入口
 
-`gtest-all.cc` 的文件注释说明，它用于“通过编译单个文件构建 GoogleTest”。它先包含公开头文件 `gtest/gtest.h`，再把 assertion result、death test、filepath、matchers、port、printers、test part、typed test 和 `gtest.cc` 等实现文件纳入同一个 translation unit（翻译单元）。[gtest-all.cc:33-49](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest-all.cc#L33-L49)
+`gtest-all.cc` 的文件注释说明，它用于“通过编译单个文件构建 GoogleTest”。它先包含公开头文件 `gtest/gtest.h`，再把 assertion result、death test、filepath、matchers、port、printers、test part、typed test 和 `gtest.cc` 等实现文件纳入同一个 translation unit（翻译单元）。[gtest-all.cc:36-49](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest-all.cc#L33-L49)
 
-`gmock-all.cc` 使用相同模式：先包含公开头文件 `gmock/gmock.h`，再包含 cardinalities、internal utils、matchers、spec builders 和 `gmock.cc` 等实现文件。[gmock-all.cc:33-46](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock-all.cc#L33-L46)
+`gmock-all.cc` 使用相同模式：先包含公开头文件 `gmock/gmock.h`，再包含 cardinalities、internal utils、matchers、spec builders 和 `gmock.cc` 等实现文件。[gmock-all.cc:36-46](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock-all.cc#L33-L46)
 
 这里要区分：`gtest-all.cc` / `gmock-all.cc` 是**源码聚合编译单元**，而 `gtest` / `gmock` 是 CMake 定义的**构建目标**。聚合文件不是运行入口，也不表示库内部只有一个功能模块。
 
@@ -47,12 +47,16 @@ GoogleMock 的 CMake 文件有明确的平台分支：MSVC 下，`gmock` 和 `gm
 graph TD
     subgraph GTest
         GT["gtest target"] -->|compile input| GTA["gtest-all.cc"]
+        GTA -->|includes public header| GTH["gtest/gtest.h"]
+        GTA -->|includes implementation| GTI["GTest implementation .cc"]
         GTM["gtest_main target"] -->|compile input| GTMC["gtest_main.cc"]
         GTM -->|link dependency| GT
     end
 
     subgraph Non_MSVC_GMock
         GM["gmock target"] -->|compile input| GMA["gmock-all.cc"]
+        GMA -->|includes public header| GMH["gmock/gmock.h"]
+        GMA -->|includes implementation| GMI["GMock implementation .cc"]
         GM -->|link dependency| GT
         GMM["gmock_main target"] -->|compile input| GMMC["gmock_main.cc"]
         GMM -->|link dependency| GM
@@ -111,5 +115,5 @@ graph TD
 - **推论**：`gtest_main` 与 `gmock_main` 是替代的默认入口库，因为二者分别定义入口函数；自定义 `main()` 是另一种使用方式。
 - **未执行**：本轮没有运行 CMake configure/build/CTest；文中的构建命令或 target 关系不能被理解为构建已通过。
 
-Sources: [gtest-all.cc:33-49](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest-all.cc#L33-L49), [gmock-all.cc:33-46](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock-all.cc#L33-L46), [gtest_main.cc:34-66](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest_main.cc#L34-L66), [gmock_main.cc:35-73](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock_main.cc#L35-L73), [googletest/CMakeLists.txt:123-151](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/CMakeLists.txt#L123-L151), [googlemock/CMakeLists.txt:85-103](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/CMakeLists.txt#L85-L103)
+Sources: [gtest-all.cc:36-49](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest-all.cc#L33-L49), [gmock-all.cc:36-46](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock-all.cc#L33-L46), [gtest_main.cc:34-66](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/src/gtest_main.cc#L34-L66), [gmock_main.cc:35-73](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/src/gmock_main.cc#L35-L73), [googletest/CMakeLists.txt:123-151](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googletest/CMakeLists.txt#L123-L151), [googlemock/CMakeLists.txt:85-103](https://github.com/maxiaoxuxu/googletest/blob/277cfa07d637aac85a388d1cb0c6adb585a1432e/googlemock/CMakeLists.txt#L85-L103)
 <!-- END:AUTOGEN googletest_02_aggregate_units_composition -->
