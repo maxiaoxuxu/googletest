@@ -1,0 +1,1327 @@
+{
+  "schema_version": "1.0",
+  "repository": {
+    "full_name": "maxiaoxuxu/googletest",
+    "source_ref": "5feffc24e4d6c49608d241d53cacb2c8143d2beb"
+  },
+  "semantic_review": {
+    "status": "completed",
+    "method": "same-agent second-pass source reread",
+    "reviewer": "ChatGPT",
+    "note": "逐页根据冻结提交重新检查关键构建文件、聚合源文件、入口实现、宏展开、注册路径和执行/报告函数；不是独立 agent 审核。"
+  },
+  "pages": [
+    {
+      "page_id": "googletest_build_architecture",
+      "filename": "01_项目结构与构建总览.md",
+      "diagram_count": 1,
+      "source_inventory": [
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "BUILD.bazel",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googlemock/CMakeLists.txt",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/CMakeLists.txt",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim_build_systems_distinct",
+          "status": "covered",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "CMakeLists.txt",
+              "start_line": 31,
+              "end_line": 36,
+              "contains": "add_subdirectory( googlemock )"
+            },
+            {
+              "path": "BUILD.bazel",
+              "start_line": 190,
+              "end_line": 198,
+              "contains": "srcs = [\"googlemock/src/gmock_main.cc\"],"
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "本页正文",
+            "anchor": "CMake 与 Bazel 的 target 组成不能合并成一套通用模型"
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "id": "build-root-selects-gmock",
+          "kind": "build_config",
+          "source": "根 CMakeLists.txt / BUILD_GMOCK",
+          "target": "googlemock 子工程",
+          "condition": "BUILD_GMOCK=ON",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "CMakeLists.txt",
+              "start_line": 31,
+              "end_line": 36,
+              "contains": "add_subdirectory( googlemock )"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "build-selection-and-targets",
+            "diagram_fragment": "ROOT -->|selects googlemock subproject| GM"
+          }
+        },
+        {
+          "id": "build-googlemock-adds-gtest",
+          "kind": "subdirectory",
+          "source": "googlemock/CMakeLists.txt",
+          "target": "googletest/CMakeLists.txt",
+          "condition": "GoogleMock 配置时",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 45,
+              "end_line": 50,
+              "contains": "add_subdirectory(\"${gtest_dir}\" \"${gmock_BINARY_DIR}/${gtest_dir}\")"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "build-selection-and-targets",
+            "diagram_fragment": "GM -->|adds googletest subdirectory| GT"
+          }
+        },
+        {
+          "id": "build-cmake-gtest-all",
+          "kind": "compile_input",
+          "source": "CMake target gtest",
+          "target": "googletest/src/gtest-all.cc",
+          "condition": "CMake 构建",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 120,
+              "end_line": 124,
+              "contains": "cxx_library(gtest \"${cxx_strict}\" src/gtest-all.cc)"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "build-selection-and-targets",
+            "diagram_fragment": "GT -->|compiles gtest-all.cc| GTA"
+          }
+        },
+        {
+          "id": "build-cmake-gtest-main",
+          "kind": "compile_input",
+          "source": "CMake target gtest_main",
+          "target": "googletest/src/gtest_main.cc",
+          "condition": "CMake 构建",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 138,
+              "end_line": 150,
+              "contains": "target_link_libraries(gtest_main PUBLIC gtest)"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "build-selection-and-targets",
+            "diagram_fragment": "GTM -->|compiles gtest_main.cc| GTMC"
+          }
+        },
+        {
+          "id": "build-bazel-gtest-glob",
+          "kind": "source_glob",
+          "source": "Bazel target //:gtest",
+          "target": "GoogleTest 与 GoogleMock 普通 .cc 源文件",
+          "condition": "根 BUILD.bazel 的 glob 规则",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "BUILD.bazel",
+              "start_line": 100,
+              "end_line": 123,
+              "contains": "\"googlemock/src/*.cc\","
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "build-selection-and-targets",
+            "diagram_fragment": "BZ_GTEST -->|globs GTest and GMock sources| SRC"
+          }
+        },
+        {
+          "id": "build-bazel-excludes-aggregates",
+          "kind": "source_exclusion",
+          "source": "Bazel target //:gtest",
+          "target": "四个 aggregate/main .cc 文件",
+          "condition": "避免 glob 与聚合源重复编译",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "BUILD.bazel",
+              "start_line": 108,
+              "end_line": 122,
+              "contains": "\"googletest/src/gtest-all.cc\","
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "build-selection-and-targets",
+            "diagram_fragment": "BZ_GTEST -->|excludes aggregate and main files| EXCLUDED"
+          }
+        },
+        {
+          "id": "build-bazel-main-source",
+          "kind": "compile_input",
+          "source": "Bazel target //:gtest_main",
+          "target": "googlemock/src/gmock_main.cc",
+          "condition": "当前 test 分支的 BUILD.bazel",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "BUILD.bazel",
+              "start_line": 190,
+              "end_line": 198,
+              "contains": "srcs = [\"googlemock/src/gmock_main.cc\"],"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "build-selection-and-targets",
+            "diagram_fragment": "BZ_MAIN -->|compiles gmock_main.cc| GMMC"
+          }
+        }
+      ],
+      "diagram_audits": [
+        {
+          "diagram_id": "build-selection-and-targets",
+          "scope": "本页 Mermaid 图所声明的全部关系",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "build-root-selects-gmock",
+            "build-googlemock-adds-gtest",
+            "build-cmake-gtest-all",
+            "build-cmake-gtest-main",
+            "build-bazel-gtest-glob",
+            "build-bazel-excludes-aggregates",
+            "build-bazel-main-source"
+          ],
+          "represented_relationship_ids": [
+            "build-root-selects-gmock",
+            "build-googlemock-adds-gtest",
+            "build-cmake-gtest-all",
+            "build-cmake-gtest-main",
+            "build-bazel-gtest-glob",
+            "build-bazel-excludes-aggregates",
+            "build-bazel-main-source"
+          ],
+          "omissions": []
+        }
+      ]
+    },
+    {
+      "page_id": "googletest_aggregate_units_entrypoints",
+      "filename": "02_聚合编译单元与测试入口.md",
+      "diagram_count": 1,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest-all.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/src/gtest_main.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googlemock/src/gmock-all.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googlemock/src/gmock_main.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googlemock/src/gmock.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "BUILD.bazel",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim_aggregate_not_entry",
+          "status": "covered",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest-all.cc",
+              "start_line": 32,
+              "end_line": 50,
+              "contains": "#include \"src/gtest.cc\""
+            },
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 59,
+              "end_line": 65,
+              "contains": "return RUN_ALL_TESTS();"
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "本页正文",
+            "anchor": "聚合编译单元不是程序入口"
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "id": "aggregate-gtest-implementation",
+          "kind": "textual_aggregation",
+          "source": "gtest-all.cc",
+          "target": "GTest implementation .cc files",
+          "condition": "单文件聚合编译模式",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest-all.cc",
+              "start_line": 32,
+              "end_line": 50,
+              "contains": "#include \"src/gtest.cc\""
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "aggregate-units-and-entrypoints",
+            "diagram_fragment": "GTA -->|textually includes implementation files| GT_IMPL"
+          }
+        },
+        {
+          "id": "aggregate-gmock-implementation",
+          "kind": "textual_aggregation",
+          "source": "gmock-all.cc",
+          "target": "GMock implementation .cc files",
+          "condition": "单文件聚合编译模式",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock-all.cc",
+              "start_line": 32,
+              "end_line": 49,
+              "contains": "#include \"src/gmock.cc\""
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "aggregate-units-and-entrypoints",
+            "diagram_fragment": "GMA -->|textually includes implementation files| GM_IMPL"
+          }
+        },
+        {
+          "id": "entry-gtest-main",
+          "kind": "program_entry",
+          "source": "gtest_main.cc",
+          "target": "main -> InitGoogleTest -> RUN_ALL_TESTS",
+          "condition": "普通平台",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest_main.cc",
+              "start_line": 59,
+              "end_line": 65,
+              "contains": "testing::InitGoogleTest(&argc, argv);"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "aggregate-units-and-entrypoints",
+            "diagram_fragment": "GT_MAIN -->|defines main and initializes| INIT_GT"
+          }
+        },
+        {
+          "id": "entry-gmock-main",
+          "kind": "program_entry",
+          "source": "gmock_main.cc",
+          "target": "main -> InitGoogleMock -> RUN_ALL_TESTS",
+          "condition": "普通平台",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock_main.cc",
+              "start_line": 61,
+              "end_line": 72,
+              "contains": "testing::InitGoogleMock(&argc, argv);"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "aggregate-units-and-entrypoints",
+            "diagram_fragment": "GM_MAIN -->|defines main and initializes| INIT_GM"
+          }
+        },
+        {
+          "id": "entry-gmock-initializes-gtest",
+          "kind": "initialization",
+          "source": "InitGoogleMockImpl",
+          "target": "InitGoogleTest",
+          "condition": "InitGoogleMock 内部",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock.cc",
+              "start_line": 135,
+              "end_line": 152,
+              "contains": "InitGoogleTest(argc, argv);"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "aggregate-units-and-entrypoints",
+            "diagram_fragment": "INIT_GM -->|initializes GoogleTest first| INIT_GT"
+          }
+        },
+        {
+          "id": "entry-bazel-main-source",
+          "kind": "compile_input",
+          "source": "Bazel //:gtest_main",
+          "target": "googlemock/src/gmock_main.cc",
+          "condition": "Bazel 根 BUILD.bazel",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "BUILD.bazel",
+              "start_line": 190,
+              "end_line": 198,
+              "contains": "srcs = [\"googlemock/src/gmock_main.cc\"],"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "aggregate-units-and-entrypoints",
+            "diagram_fragment": "BZ_MAIN -->|uses gmock_main.cc as entry source| GM_MAIN"
+          }
+        }
+      ],
+      "diagram_audits": [
+        {
+          "diagram_id": "aggregate-units-and-entrypoints",
+          "scope": "本页 Mermaid 图所声明的全部关系",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "aggregate-gtest-implementation",
+            "aggregate-gmock-implementation",
+            "entry-gtest-main",
+            "entry-gmock-main",
+            "entry-gmock-initializes-gtest",
+            "entry-bazel-main-source"
+          ],
+          "represented_relationship_ids": [
+            "aggregate-gtest-implementation",
+            "aggregate-gmock-implementation",
+            "entry-gtest-main",
+            "entry-gmock-main",
+            "entry-gmock-initializes-gtest",
+            "entry-bazel-main-source"
+          ],
+          "omissions": []
+        }
+      ]
+    },
+    {
+      "page_id": "googletest_static_test_registration",
+      "filename": "03_TEST宏与静态注册机制.md",
+      "diagram_count": 1,
+      "source_inventory": [
+        {
+          "path": "googletest/include/gtest/internal/gtest-internal.h",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/src/gtest-internal-inl.h",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/include/gtest/gtest.h",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim_static_registration",
+          "status": "covered",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/internal/gtest-internal.h",
+              "start_line": 1516,
+              "end_line": 1559,
+              "contains": "::testing::internal::MakeAndRegisterTestInfo("
+            },
+            {
+              "path": "googletest/src/gtest-internal-inl.h",
+              "start_line": 681,
+              "end_line": 710,
+              "contains": "before main() is reached."
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "本页正文",
+            "anchor": "常规 TEST 和 TEST_F 在 main 之前通过静态初始化注册"
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "id": "registration-test-alias",
+          "kind": "macro_expansion",
+          "source": "TEST(suite, name)",
+          "target": "GTEST_TEST(suite, name)",
+          "condition": "默认宏定义",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/gtest.h",
+              "start_line": 2199,
+              "end_line": 2206,
+              "contains": "#define TEST(test_suite_name, test_name) GTEST_TEST(test_suite_name, test_name)"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "test-macro-static-registration",
+            "diagram_fragment": "TEST -->|expands to| GTEST_TEST"
+          }
+        },
+        {
+          "id": "registration-static-member",
+          "kind": "static_registration",
+          "source": "GTEST_TEST_",
+          "target": "静态 TestInfo 指针成员",
+          "condition": "每个 TEST/TEST_F 生成的测试类",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/internal/gtest-internal.h",
+              "start_line": 1516,
+              "end_line": 1559,
+              "contains": "static ::testing::TestInfo* const test_info_;"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "test-macro-static-registration",
+            "diagram_fragment": "GTEST_TEST_ -->|defines static test_info_| STATIC_INFO"
+          }
+        },
+        {
+          "id": "registration-calls-factory",
+          "kind": "registration_call",
+          "source": "静态 test_info_ 初始化",
+          "target": "MakeAndRegisterTestInfo",
+          "condition": "静态初始化阶段",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/internal/gtest-internal.h",
+              "start_line": 1546,
+              "end_line": 1559,
+              "contains": "::testing::internal::MakeAndRegisterTestInfo("
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "test-macro-static-registration",
+            "diagram_fragment": "STATIC_INFO -->|calls during static initialization| MAKE_REGISTER"
+          }
+        },
+        {
+          "id": "registration-creates-testinfo",
+          "kind": "registration_call",
+          "source": "MakeAndRegisterTestInfo",
+          "target": "UnitTestImpl::AddTestInfo",
+          "condition": "测试项元数据创建后",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2851,
+              "end_line": 2861,
+              "contains": "GetUnitTestImpl()->AddTestInfo(set_up_tc, tear_down_tc, test_info);"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "test-macro-static-registration",
+            "diagram_fragment": "MAKE_REGISTER -->|adds TestInfo| ADD_INFO"
+          }
+        },
+        {
+          "id": "registration-adds-to-suite",
+          "kind": "registry_ownership",
+          "source": "UnitTestImpl::AddTestInfo",
+          "target": "TestSuite::AddTestInfo",
+          "condition": "按 test_suite_name 归组",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest-internal-inl.h",
+              "start_line": 681,
+              "end_line": 710,
+              "contains": "GetTestSuite(test_info->test_suite_name_, test_info->type_param(),"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "test-macro-static-registration",
+            "diagram_fragment": "ADD_INFO -->|groups TestInfo under| TEST_SUITE"
+          }
+        },
+        {
+          "id": "registration-parameterized-postinit",
+          "kind": "late_registration",
+          "source": "PostFlagParsingInit",
+          "target": "RegisterParameterizedTests",
+          "condition": "TEST_P/实例化测试",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5813,
+              "end_line": 5840,
+              "contains": "RegisterParameterizedTests();"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "test-macro-static-registration",
+            "diagram_fragment": "POST_INIT -->|registers parameterized tests| PARAM_REG"
+          }
+        }
+      ],
+      "diagram_audits": [
+        {
+          "diagram_id": "test-macro-static-registration",
+          "scope": "本页 Mermaid 图所声明的全部关系",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "registration-test-alias",
+            "registration-static-member",
+            "registration-calls-factory",
+            "registration-creates-testinfo",
+            "registration-adds-to-suite",
+            "registration-parameterized-postinit"
+          ],
+          "represented_relationship_ids": [
+            "registration-test-alias",
+            "registration-static-member",
+            "registration-calls-factory",
+            "registration-creates-testinfo",
+            "registration-adds-to-suite",
+            "registration-parameterized-postinit"
+          ],
+          "omissions": []
+        }
+      ]
+    },
+    {
+      "page_id": "googletest_runtime_dispatch",
+      "filename": "04_RUN_ALL_TESTS执行链路.md",
+      "diagram_count": 1,
+      "source_inventory": [
+        {
+          "path": "googletest/include/gtest/gtest.h",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim_runall_dispatch",
+          "status": "covered",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/gtest.h",
+              "start_line": 2336,
+              "end_line": 2349,
+              "contains": "inline int RUN_ALL_TESTS() { return ::testing::UnitTest::GetInstance()->Run(); }"
+            },
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5940,
+              "end_line": 5980,
+              "contains": "FilterTests(should_shard ? HONOR_SHARDING_PROTOCOL"
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "本页正文",
+            "anchor": "RUN_ALL_TESTS 只是入口包装，真正的测试调度在 UnitTestImpl::RunAllTests"
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "id": "runtime-inline-run-all",
+          "kind": "inline_wrapper",
+          "source": "RUN_ALL_TESTS()",
+          "target": "UnitTest::GetInstance()->Run()",
+          "condition": "调用公开宏/函数接口",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/include/gtest/gtest.h",
+              "start_line": 2336,
+              "end_line": 2349,
+              "contains": "inline int RUN_ALL_TESTS() { return ::testing::UnitTest::GetInstance()->Run(); }"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "run-all-tests-call-chain",
+            "diagram_fragment": "RUN_MACRO -->|calls| UNIT_RUN"
+          }
+        },
+        {
+          "id": "runtime-unit-run-to-impl",
+          "kind": "call",
+          "source": "UnitTest::Run",
+          "target": "UnitTestImpl::RunAllTests",
+          "condition": "异常处理包装中的执行",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5618,
+              "end_line": 5630,
+              "contains": "&internal::UnitTestImpl::RunAllTests"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "run-all-tests-call-chain",
+            "diagram_fragment": "UNIT_RUN -->|invokes through exception wrapper| RUN_ALL"
+          }
+        },
+        {
+          "id": "runtime-filter-select",
+          "kind": "selection",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "FilterTests",
+          "condition": "应用 filter / sharding 后确定应执行项",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 5985,
+              "end_line": 6005,
+              "contains": "FilterTests(should_shard ? HONOR_SHARDING_PROTOCOL"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "run-all-tests-call-chain",
+            "diagram_fragment": "RUN_ALL -->|filters and selects tests| FILTER"
+          }
+        },
+        {
+          "id": "runtime-suite-loop",
+          "kind": "dispatch",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "TestSuite::Run",
+          "condition": "逐个执行被选中的 suite",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6050,
+              "end_line": 6174,
+              "contains": "GetMutableSuiteCase(test_index)->Run();"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "run-all-tests-call-chain",
+            "diagram_fragment": "RUN_ALL -->|runs selected suites| SUITE_RUN"
+          }
+        },
+        {
+          "id": "runtime-suite-to-testinfo",
+          "kind": "dispatch",
+          "source": "TestSuite::Run",
+          "target": "TestInfo::Run",
+          "condition": "遍历当前 suite 的 TestInfo",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3055,
+              "end_line": 3125,
+              "contains": "GetMutableTestInfo(i)->Run();"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "run-all-tests-call-chain",
+            "diagram_fragment": "SUITE_RUN -->|runs each TestInfo| INFO_RUN"
+          }
+        },
+        {
+          "id": "runtime-testinfo-create-and-run",
+          "kind": "object_lifecycle",
+          "source": "TestInfo::Run",
+          "target": "Test::Run",
+          "condition": "factory 创建 fixture 后执行",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2896,
+              "end_line": 2942,
+              "contains": "test->Run();"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "run-all-tests-call-chain",
+            "diagram_fragment": "INFO_RUN -->|runs fixture object| TEST_RUN"
+          }
+        },
+        {
+          "id": "runtime-test-setup-body-teardown",
+          "kind": "test_lifecycle",
+          "source": "Test::Run",
+          "target": "SetUp -> TestBody -> TearDown",
+          "condition": "TestBody 仅在 setup 成功且未 skip 时执行；TearDown 用于清理",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 2767,
+              "end_line": 2790,
+              "contains": "Test::TearDown"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "run-all-tests-call-chain",
+            "diagram_fragment": "TEST_RUN -->|calls SetUp then conditional TestBody and TearDown| TEST_BODY"
+          }
+        }
+      ],
+      "diagram_audits": [
+        {
+          "diagram_id": "run-all-tests-call-chain",
+          "scope": "本页 Mermaid 图所声明的全部关系",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "runtime-inline-run-all",
+            "runtime-unit-run-to-impl",
+            "runtime-filter-select",
+            "runtime-suite-loop",
+            "runtime-suite-to-testinfo",
+            "runtime-testinfo-create-and-run",
+            "runtime-test-setup-body-teardown"
+          ],
+          "represented_relationship_ids": [
+            "runtime-inline-run-all",
+            "runtime-unit-run-to-impl",
+            "runtime-filter-select",
+            "runtime-suite-loop",
+            "runtime-suite-to-testinfo",
+            "runtime-testinfo-create-and-run",
+            "runtime-test-setup-body-teardown"
+          ],
+          "omissions": []
+        }
+      ]
+    },
+    {
+      "page_id": "googletest_fixtures_events_reporting",
+      "filename": "05_Fixture全局环境与事件报告.md",
+      "diagram_count": 1,
+      "source_inventory": [
+        {
+          "path": "googletest/src/gtest.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim_lifecycle_scopes",
+          "status": "covered",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6050,
+              "end_line": 6174,
+              "contains": "environments_.rbegin(), environments_.rend(),"
+            },
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3055,
+              "end_line": 3125,
+              "contains": "TestSuite::RunSetUpTestSuite"
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "本页正文",
+            "anchor": "全局 Environment、TestSuite 和单个 Test 是三个不同的生命周期作用域"
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "id": "lifecycle-global-env-setup",
+          "kind": "lifecycle",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "Environment::SetUp",
+          "condition": "每次 iteration 按 repeat 配置决定是否运行",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6050,
+              "end_line": 6174,
+              "contains": "ForEach(environments_, SetUpEnvironment);"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "environment-and-event-reporting",
+            "diagram_fragment": "RUN_ALL -->|sets up global environments| ENV_SETUP"
+          }
+        },
+        {
+          "id": "lifecycle-global-env-teardown",
+          "kind": "lifecycle",
+          "source": "UnitTestImpl::RunAllTests",
+          "target": "Environment::TearDown",
+          "condition": "按 environments_ 逆序清理",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 6050,
+              "end_line": 6174,
+              "contains": "environments_.rbegin(), environments_.rend(),"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "environment-and-event-reporting",
+            "diagram_fragment": "RUN_ALL -->|tears down environments in reverse order| ENV_TEARDOWN"
+          }
+        },
+        {
+          "id": "lifecycle-suite-fixture",
+          "kind": "lifecycle",
+          "source": "TestSuite::Run",
+          "target": "SetUpTestSuite -> TestInfo loop -> TearDownTestSuite",
+          "condition": "suite 级生命周期",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3055,
+              "end_line": 3125,
+              "contains": "TestSuite::RunSetUpTestSuite"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "environment-and-event-reporting",
+            "diagram_fragment": "SUITE -->|brackets TestInfo loop with suite setup and teardown| SUITE_FIXTURE"
+          }
+        },
+        {
+          "id": "report-result-storage",
+          "kind": "result_reporting",
+          "source": "DefaultGlobalTestPartResultReporter",
+          "target": "current TestResult",
+          "condition": "断言结果上报",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 1090,
+              "end_line": 1111,
+              "contains": "unit_test_->current_test_result()->AddTestPartResult(result);"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "environment-and-event-reporting",
+            "diagram_fragment": "REPORTER -->|stores result in| TEST_RESULT"
+          }
+        },
+        {
+          "id": "report-listener-order",
+          "kind": "event_dispatch",
+          "source": "TestEventRepeater",
+          "target": "registered TestEventListener list",
+          "condition": "开始类 forward；结束类 reverse",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3916,
+              "end_line": 3978,
+              "contains": "for (size_t i = listeners_.size(); i != 0; i--)"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "environment-and-event-reporting",
+            "diagram_fragment": "REPEATER -->|dispatches end callbacks in reverse order| LISTENERS"
+          }
+        },
+        {
+          "id": "report-printer-summary",
+          "kind": "reporting",
+          "source": "PrettyUnitTestResultPrinter::OnTestIterationEnd",
+          "target": "pass/skip/failure summary",
+          "condition": "每轮测试结束",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/src/gtest.cc",
+              "start_line": 3700,
+              "end_line": 3745,
+              "contains": "PrettyUnitTestResultPrinter::OnTestIterationEnd"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "environment-and-event-reporting",
+            "diagram_fragment": "ITERATION_END -->|prints pass skip and failure counts| SUMMARY"
+          }
+        }
+      ],
+      "diagram_audits": [
+        {
+          "diagram_id": "environment-and-event-reporting",
+          "scope": "本页 Mermaid 图所声明的全部关系",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "lifecycle-global-env-setup",
+            "lifecycle-global-env-teardown",
+            "lifecycle-suite-fixture",
+            "report-result-storage",
+            "report-listener-order",
+            "report-printer-summary"
+          ],
+          "represented_relationship_ids": [
+            "lifecycle-global-env-setup",
+            "lifecycle-global-env-teardown",
+            "lifecycle-suite-fixture",
+            "report-result-storage",
+            "report-listener-order",
+            "report-printer-summary"
+          ],
+          "omissions": []
+        }
+      ]
+    },
+    {
+      "page_id": "googletest_build_test_matrix_gmock",
+      "filename": "06_GoogleMock集成与项目自测目标.md",
+      "diagram_count": 1,
+      "source_inventory": [
+        {
+          "path": "googlemock/src/gmock.cc",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/CMakeLists.txt",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googlemock/CMakeLists.txt",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        },
+        {
+          "path": "googletest/test/BUILD.bazel",
+          "disposition": "covered",
+          "symbols_reviewed": []
+        }
+      ],
+      "claims": [
+        {
+          "id": "claim_test_target_layers",
+          "status": "covered",
+          "importance": "critical",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock.cc",
+              "start_line": 135,
+              "end_line": 155,
+              "contains": "InitGoogleTest(argc, argv);"
+            },
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 195,
+              "end_line": 225,
+              "contains": "cxx_test(gtest_main_unittest gtest_main)"
+            }
+          ],
+          "representation": {
+            "kind": "prose",
+            "location": "本页正文",
+            "anchor": "项目自测 target 与用户测试程序的入口库是两层东西"
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "id": "gmock-cmake-links-gtest",
+          "kind": "link_dependency",
+          "source": "CMake target gmock（非 MSVC）",
+          "target": "CMake target gtest",
+          "condition": "非 MSVC 分支",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 84,
+              "end_line": 104,
+              "contains": "target_link_libraries(gmock PUBLIC gtest)"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "gmock-integration-and-test-targets",
+            "diagram_fragment": "GMOCK -->|public links gtest on non-MSVC| GTEST"
+          }
+        },
+        {
+          "id": "gmock-main-links-gmock",
+          "kind": "link_dependency",
+          "source": "CMake target gmock_main（非 MSVC）",
+          "target": "CMake target gmock",
+          "condition": "非 MSVC 分支",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/CMakeLists.txt",
+              "start_line": 84,
+              "end_line": 104,
+              "contains": "target_link_libraries(gmock_main PUBLIC gmock)"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "gmock-integration-and-test-targets",
+            "diagram_fragment": "GMOCK_MAIN -->|public links gmock on non-MSVC| GMOCK"
+          }
+        },
+        {
+          "id": "gmock-init-bridges-to-gtest",
+          "kind": "initialization",
+          "source": "InitGoogleMockImpl",
+          "target": "InitGoogleTest",
+          "condition": "先初始化 GTest，再解析 GMock 参数",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googlemock/src/gmock.cc",
+              "start_line": 135,
+              "end_line": 155,
+              "contains": "InitGoogleTest(argc, argv);"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "gmock-integration-and-test-targets",
+            "diagram_fragment": "INIT_GMOCK -->|calls InitGoogleTest first| INIT_GTEST"
+          }
+        },
+        {
+          "id": "cmake-test-target-links-main",
+          "kind": "test_target_dependency",
+          "source": "CMake gtest_main_unittest target",
+          "target": "gtest_main library",
+          "condition": "GoogleTest CMake 自测 target",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/CMakeLists.txt",
+              "start_line": 195,
+              "end_line": 225,
+              "contains": "cxx_test(gtest_main_unittest gtest_main)"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "gmock-integration-and-test-targets",
+            "diagram_fragment": "CMAKE_TEST -->|links gtest_main| GT_MAIN"
+          }
+        },
+        {
+          "id": "bazel-gtest-test-main-dep",
+          "kind": "test_target_dependency",
+          "source": "Bazel googletest test targets",
+          "target": "//:gtest_main",
+          "condition": "示例及测试 BUILD 规则",
+          "importance": "critical",
+          "status": "covered",
+          "evidence": [
+            {
+              "path": "googletest/test/BUILD.bazel",
+              "start_line": 45,
+              "end_line": 105,
+              "contains": "deps = [\":gtest_main\"],"
+            }
+          ],
+          "representation": {
+            "kind": "diagram",
+            "location": "本页关系图",
+            "diagram_id": "gmock-integration-and-test-targets",
+            "diagram_fragment": "BAZEL_TEST -->|depends on gtest_main| BZ_MAIN"
+          }
+        }
+      ],
+      "diagram_audits": [
+        {
+          "diagram_id": "gmock-integration-and-test-targets",
+          "scope": "本页 Mermaid 图所声明的全部关系",
+          "status": "reviewed",
+          "in_scope_relationship_ids": [
+            "gmock-cmake-links-gtest",
+            "gmock-main-links-gmock",
+            "gmock-init-bridges-to-gtest",
+            "cmake-test-target-links-main",
+            "bazel-gtest-test-main-dep"
+          ],
+          "represented_relationship_ids": [
+            "gmock-cmake-links-gtest",
+            "gmock-main-links-gmock",
+            "gmock-init-bridges-to-gtest",
+            "cmake-test-target-links-main",
+            "bazel-gtest-test-main-dep"
+          ],
+          "omissions": []
+        }
+      ]
+    }
+  ]
+}
