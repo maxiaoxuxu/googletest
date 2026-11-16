@@ -1,0 +1,37 @@
+project:
+  name: "GoogleTest / GoogleMock — DeepWiki 2.0.7 smoke test"
+  description: "验证插件在 googletest test 分支上的仓库读取、TOC、源码引用、Mermaid 静态校验和隔离输出。"
+  repo_base_url: "https://github.com/maxiaoxuxu/googletest/blob"
+  ref_commit_hash: "277cfa07d637aac85a388d1cb0c6adb585a1432e"
+  updated_at: "2026-11-16"
+  language: "zh-CN"
+pages:
+  - id: googletest_01_build_graph
+    title: "CMake 构建入口与目标依赖"
+    filename: "01_build_graph.md"
+    description: "追踪 GoogleTest / GoogleMock 的构建选择、库目标和自测开关"
+    source_files: ["CMakeLists.txt", "googletest/CMakeLists.txt", "googlemock/CMakeLists.txt"]
+    sections:
+      - id: googletest_01_build_graph_cmake
+        title: "CMake 构建入口与库目标"
+        description: "BUILD_GMOCK 分支、gtest/gmock 依赖与测试开关"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: [googletest_02_aggregate_units]
+  - id: googletest_02_aggregate_units
+    title: "聚合编译单元与测试入口"
+    filename: "02_aggregate_units.md"
+    description: "解释 gtest-all.cc / gmock-all.cc 和 main 入口"
+    source_files: ["googletest/src/gtest-all.cc", "googlemock/src/gmock-all.cc", "googletest/src/gtest_main.cc", "googlemock/src/gmock_main.cc", "googletest/CMakeLists.txt", "googlemock/CMakeLists.txt"]
+    sections:
+      - id: googletest_02_aggregate_units_composition
+        title: "聚合编译单元与 main 入口"
+        description: "区分实现聚合、库目标和用户测试入口"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: [googletest_01_build_graph]
+notes:
+  - "两页隔离 smoke-test，不覆盖 docs/wiki 根目录或历史测试目录。"
+  - "源码基准固定为 test 分支 HEAD 277cfa07d637aac85a388d1cb0c6adb585a1432e。"
