@@ -1,0 +1,35 @@
+{
+  "repository": "maxiaoxuxu/googletest",
+  "target_branch": "test",
+  "inspected_commit": "277cfa07d637aac85a388d1cb0c6adb585a1432e",
+  "scan_method": "GitHub recursive tree API plus targeted file reads; local collect_context.py not executed because no local worktree was available",
+  "structure": {
+    "tracked_files": 289,
+    "directories": 40,
+    "total_blob_bytes": 4254418,
+    "tree_truncated": false,
+    "existing_docs_wiki_files": 37
+  },
+  "source_scope": "Implementation analysis excluded docs/wiki/** to avoid treating prior generated Wiki artifacts as source.",
+  "inspected_paths": [
+    "README.md",
+    "CMakeLists.txt",
+    "BUILD.bazel",
+    "CONTRIBUTING.md",
+    "googletest/CMakeLists.txt",
+    "googlemock/CMakeLists.txt",
+    "googletest/src/gtest-all.cc",
+    "googlemock/src/gmock-all.cc",
+    "googletest/src/gtest_main.cc",
+    "googlemock/src/gmock_main.cc",
+    "googletest/test/BUILD.bazel",
+    "googlemock/test/BUILD.bazel"
+  ],
+  "focus": [
+    "BUILD_GMOCK root branch",
+    "gtest/gmock CMake targets and dependencies",
+    "aggregate translation units",
+    "test entrypoints",
+    "gtest_build_tests and gmock_build_tests"
+  ]
+}
