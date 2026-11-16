@@ -6,26 +6,56 @@
   },
   "semantic_review": {
     "status": "incomplete",
-    "method": "not yet independently reconstructed for every page",
+    "method": "same-agent source review completed for primary lifecycle path; complete per-edge reconstruction for all pages remains outstanding",
     "reviewer": "orchestrator"
   },
   "pages": [
     {
       "page_id": "googletest_01_project_overview",
       "filename": "01_project_overview.md",
-      "diagram_count": 0,
+      "diagram_count": 1,
       "source_inventory": [
         {
-          "path": "googletest/src/gtest.cc",
+          "path": "README.md",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/src/gtest-all.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/src/gmock-all.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_01_project_overview_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_01_project_overview_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -36,24 +66,51 @@
         }
       ],
       "relationships": [],
-      "diagram_audits": []
+      "diagram_audits": [
+        {
+          "diagram_id": "01_project_overview-diagram-1",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        }
+      ]
     },
     {
       "page_id": "googletest_02_registration",
       "filename": "02_registration.md",
-      "diagram_count": 0,
+      "diagram_count": 1,
       "source_inventory": [
+        {
+          "path": "googletest/include/gtest/gtest.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/include/gtest/internal/gtest-internal.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
         {
           "path": "googletest/src/gtest.cc",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/src/gtest-internal-inl.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_02_registration_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_02_registration_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -64,24 +121,45 @@
         }
       ],
       "relationships": [],
-      "diagram_audits": []
+      "diagram_audits": [
+        {
+          "diagram_id": "02_registration-diagram-1",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        }
+      ]
     },
     {
       "page_id": "googletest_03_execution",
       "filename": "03_execution.md",
-      "diagram_count": 0,
+      "diagram_count": 1,
       "source_inventory": [
+        {
+          "path": "googletest/src/gtest_main.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
         {
           "path": "googletest/src/gtest.cc",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/src/gtest-internal-inl.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_03_execution_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_03_execution_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -92,7 +170,16 @@
         }
       ],
       "relationships": [],
-      "diagram_audits": []
+      "diagram_audits": [
+        {
+          "diagram_id": "03_execution-diagram-1",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        }
+      ]
     },
     {
       "page_id": "googletest_04_fixtures_environment",
@@ -100,16 +187,22 @@
       "diagram_count": 0,
       "source_inventory": [
         {
+          "path": "googletest/include/gtest/gtest.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
           "path": "googletest/src/gtest.cc",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_04_fixtures_environment_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_04_fixtures_environment_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -128,16 +221,34 @@
       "diagram_count": 0,
       "source_inventory": [
         {
+          "path": "docs/primer.md",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/include/gtest/gtest.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
           "path": "googletest/src/gtest.cc",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/src/gtest-test-part.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_05_assertions_results_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_05_assertions_results_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -156,16 +267,40 @@
       "diagram_count": 0,
       "source_inventory": [
         {
+          "path": "googletest/include/gtest/gtest-param-test.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/include/gtest/internal/gtest-param-util.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/include/gtest/gtest-typed-test.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/src/gtest-death-test.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
           "path": "googletest/src/gtest.cc",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_06_test_variants_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_06_test_variants_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -181,19 +316,37 @@
     {
       "page_id": "googletest_07_gmock_runtime",
       "filename": "07_gmock_runtime.md",
-      "diagram_count": 0,
+      "diagram_count": 1,
       "source_inventory": [
         {
-          "path": "googletest/src/gtest.cc",
+          "path": "googlemock/include/gmock/gmock.h",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/include/gmock/gmock-function-mocker.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/include/gmock/gmock-spec-builders.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/src/gmock-spec-builders.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_07_gmock_runtime_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_07_gmock_runtime_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -204,24 +357,39 @@
         }
       ],
       "relationships": [],
-      "diagram_audits": []
+      "diagram_audits": [
+        {
+          "diagram_id": "07_gmock_runtime-diagram-1",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        }
+      ]
     },
     {
       "page_id": "googletest_08_expectations",
       "filename": "08_expectations.md",
-      "diagram_count": 0,
+      "diagram_count": 1,
       "source_inventory": [
         {
-          "path": "googletest/src/gtest.cc",
+          "path": "googlemock/include/gmock/gmock-spec-builders.h",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/src/gmock-spec-builders.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_08_expectations_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_08_expectations_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -232,7 +400,16 @@
         }
       ],
       "relationships": [],
-      "diagram_audits": []
+      "diagram_audits": [
+        {
+          "diagram_id": "08_expectations-diagram-1",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        }
+      ]
     },
     {
       "page_id": "googletest_09_actions",
@@ -240,16 +417,22 @@
       "diagram_count": 0,
       "source_inventory": [
         {
-          "path": "googletest/src/gtest.cc",
+          "path": "googlemock/include/gmock/gmock-actions.h",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/include/gmock/gmock-spec-builders.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_09_actions_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_09_actions_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -268,16 +451,28 @@
       "diagram_count": 0,
       "source_inventory": [
         {
-          "path": "googletest/src/gtest.cc",
+          "path": "googletest/include/gtest/gtest-matchers.h",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/include/gmock/gmock-matchers.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/include/gmock/gmock-spec-builders.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_10_matchers_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_10_matchers_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -296,16 +491,58 @@
       "diagram_count": 0,
       "source_inventory": [
         {
-          "path": "googletest/src/gtest.cc",
+          "path": "README.md",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "BUILD.bazel",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "MODULE.bazel",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/test/BUILD.bazel",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/test/BUILD.bazel",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_11_build_testing_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_11_build_testing_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -321,19 +558,49 @@
     {
       "page_id": "googletest_12_aggregate_units",
       "filename": "12_aggregate_units.md",
-      "diagram_count": 0,
+      "diagram_count": 2,
       "source_inventory": [
         {
-          "path": "googletest/src/gtest.cc",
+          "path": "googletest/src/gtest-all.cc",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/src/gmock-all.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/src/gtest_main.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/src/gmock_main.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googlemock/CMakeLists.txt",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_12_aggregate_units_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_12_aggregate_units_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -344,24 +611,65 @@
         }
       ],
       "relationships": [],
-      "diagram_audits": []
+      "diagram_audits": [
+        {
+          "diagram_id": "build-target-composition",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        },
+        {
+          "diagram_id": "runtime-test-entry",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        }
+      ]
     },
     {
       "page_id": "googletest_13_test_execution_lifecycle",
       "filename": "13_test_execution_lifecycle.md",
-      "diagram_count": 0,
+      "diagram_count": 3,
       "source_inventory": [
+        {
+          "path": "googletest/src/gtest_main.cc",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/include/gtest/gtest.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/include/gtest/internal/gtest-internal.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
+        {
+          "path": "googletest/src/gtest-internal-inl.h",
+          "disposition": "unreviewed",
+          "symbols_reviewed": [],
+          "reason": "本轮尚未完成该文件的逐边语义复核"
+        },
         {
           "path": "googletest/src/gtest.cc",
           "disposition": "unreviewed",
           "symbols_reviewed": [],
-          "reason": "等待本地跨文件审计和逐边复核"
+          "reason": "本轮尚未完成该文件的逐边语义复核"
         }
       ],
       "claims": [
         {
-          "id": "googletest_13_test_execution_lifecycle_main",
-          "statement": "本页源码主题与执行路径",
+          "id": "googletest_13_test_execution_lifecycle_main_claim",
+          "statement": "本页覆盖的源码主题和执行路径",
           "importance": "critical",
           "status": "unreviewed",
           "evidence": [],
@@ -372,7 +680,32 @@
         }
       ],
       "relationships": [],
-      "diagram_audits": []
+      "diagram_audits": [
+        {
+          "diagram_id": "execution-lifecycle-overview",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        },
+        {
+          "diagram_id": "test-call-hierarchy",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        },
+        {
+          "diagram_id": "result-event-reporting",
+          "scope": "页面内 Mermaid 图；待逐边对照源码关系",
+          "status": "unreviewed",
+          "in_scope_relationship_ids": [],
+          "represented_relationship_ids": [],
+          "omissions": []
+        }
+      ]
     }
   ]
 }

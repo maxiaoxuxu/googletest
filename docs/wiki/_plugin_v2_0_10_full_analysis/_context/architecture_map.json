@@ -8,79 +8,146 @@
     {
       "page_id": "googletest_01_project_overview",
       "filename": "01_project_overview.md",
-      "source_files": [],
+      "source_files": [
+        "README.md",
+        "CMakeLists.txt",
+        "googletest/CMakeLists.txt",
+        "googlemock/CMakeLists.txt",
+        "googletest/src/gtest-all.cc",
+        "googlemock/src/gmock-all.cc"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_02_registration",
       "filename": "02_registration.md",
-      "source_files": [],
+      "source_files": [
+        "googletest/include/gtest/gtest.h",
+        "googletest/include/gtest/internal/gtest-internal.h",
+        "googletest/src/gtest.cc",
+        "googletest/src/gtest-internal-inl.h"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_03_execution",
       "filename": "03_execution.md",
-      "source_files": [],
+      "source_files": [
+        "googletest/src/gtest_main.cc",
+        "googletest/src/gtest.cc",
+        "googletest/src/gtest-internal-inl.h"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_04_fixtures_environment",
       "filename": "04_fixtures_environment.md",
-      "source_files": [],
+      "source_files": [
+        "googletest/include/gtest/gtest.h",
+        "googletest/src/gtest.cc"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_05_assertions_results",
       "filename": "05_assertions_results.md",
-      "source_files": [],
+      "source_files": [
+        "docs/primer.md",
+        "googletest/include/gtest/gtest.h",
+        "googletest/src/gtest.cc",
+        "googletest/src/gtest-test-part.cc"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_06_test_variants",
       "filename": "06_test_variants.md",
-      "source_files": [],
+      "source_files": [
+        "googletest/include/gtest/gtest-param-test.h",
+        "googletest/include/gtest/internal/gtest-param-util.h",
+        "googletest/include/gtest/gtest-typed-test.h",
+        "googletest/src/gtest-death-test.cc",
+        "googletest/src/gtest.cc"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_07_gmock_runtime",
       "filename": "07_gmock_runtime.md",
-      "source_files": [],
+      "source_files": [
+        "googlemock/include/gmock/gmock.h",
+        "googlemock/include/gmock/gmock-function-mocker.h",
+        "googlemock/include/gmock/gmock-spec-builders.h",
+        "googlemock/src/gmock-spec-builders.cc"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_08_expectations",
       "filename": "08_expectations.md",
-      "source_files": [],
+      "source_files": [
+        "googlemock/include/gmock/gmock-spec-builders.h",
+        "googlemock/src/gmock-spec-builders.cc"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_09_actions",
       "filename": "09_actions.md",
-      "source_files": [],
+      "source_files": [
+        "googlemock/include/gmock/gmock-actions.h",
+        "googlemock/include/gmock/gmock-spec-builders.h"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_10_matchers",
       "filename": "10_matchers.md",
-      "source_files": [],
+      "source_files": [
+        "googletest/include/gtest/gtest-matchers.h",
+        "googlemock/include/gmock/gmock-matchers.h",
+        "googlemock/include/gmock/gmock-spec-builders.h"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_11_build_testing",
       "filename": "11_build_testing.md",
-      "source_files": [],
+      "source_files": [
+        "README.md",
+        "CMakeLists.txt",
+        "googletest/CMakeLists.txt",
+        "googlemock/CMakeLists.txt",
+        "BUILD.bazel",
+        "MODULE.bazel",
+        "googletest/test/BUILD.bazel",
+        "googlemock/test/BUILD.bazel"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_12_aggregate_units",
       "filename": "12_aggregate_units.md",
-      "source_files": [],
+      "source_files": [
+        "googletest/src/gtest-all.cc",
+        "googlemock/src/gmock-all.cc",
+        "googletest/src/gtest_main.cc",
+        "googlemock/src/gmock_main.cc",
+        "googletest/CMakeLists.txt",
+        "googlemock/CMakeLists.txt"
+      ],
       "relationships": []
     },
     {
       "page_id": "googletest_13_test_execution_lifecycle",
       "filename": "13_test_execution_lifecycle.md",
-      "source_files": [],
+      "source_files": [
+        "googletest/src/gtest_main.cc",
+        "googletest/include/gtest/gtest.h",
+        "googletest/include/gtest/internal/gtest-internal.h",
+        "googletest/src/gtest-internal-inl.h",
+        "googletest/src/gtest.cc"
+      ],
       "relationships": []
     }
   ]
