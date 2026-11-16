@@ -1,0 +1,90 @@
+project:
+  name: "GoogleTest / GoogleMock 1.18.0"
+  description: "DeepWiki 2.0.13 zh-CN 全量结构与执行路径验证"
+  repo_base_url: "https://github.com/maxiaoxuxu/googletest/blob"
+  ref_commit_hash: "5feffc24e4d6c49608d241d53cacb2c8143d2beb"
+  updated_at: "2026-11-16"
+  language: "zh-CN"
+pages:
+  - id: googletest_build_architecture
+    title: "项目结构与构建总览"
+    filename: "01_项目结构与构建总览.md"
+    description: "基于冻结源码提交的源码关系、构建边界和执行路径分析"
+    source_files: ["CMakeLists.txt", "BUILD.bazel", "googlemock/CMakeLists.txt", "googletest/CMakeLists.txt"]
+    sections:
+      - id: googletest_build_architecture_main
+        title: "项目结构与构建总览"
+        description: "源码事实、派生关系和未执行事项分开标注"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: []
+  - id: googletest_aggregate_units_entrypoints
+    title: "聚合编译单元与测试入口"
+    filename: "02_聚合编译单元与测试入口.md"
+    description: "基于冻结源码提交的源码关系、构建边界和执行路径分析"
+    source_files: ["googletest/src/gtest-all.cc", "googletest/src/gtest_main.cc", "googlemock/src/gmock-all.cc", "googlemock/src/gmock_main.cc", "googlemock/src/gmock.cc", "BUILD.bazel"]
+    sections:
+      - id: googletest_aggregate_units_entrypoints_main
+        title: "聚合编译单元与测试入口"
+        description: "源码事实、派生关系和未执行事项分开标注"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: []
+  - id: googletest_static_test_registration
+    title: "TEST 宏与静态注册机制"
+    filename: "03_TEST宏与静态注册机制.md"
+    description: "基于冻结源码提交的源码关系、构建边界和执行路径分析"
+    source_files: ["googletest/include/gtest/internal/gtest-internal.h", "googletest/src/gtest-internal-inl.h", "googletest/include/gtest/gtest.h", "googletest/src/gtest.cc"]
+    sections:
+      - id: googletest_static_test_registration_main
+        title: "TEST 宏与静态注册机制"
+        description: "源码事实、派生关系和未执行事项分开标注"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: []
+  - id: googletest_runtime_dispatch
+    title: "RUN_ALL_TESTS 执行链路"
+    filename: "04_RUN_ALL_TESTS执行链路.md"
+    description: "基于冻结源码提交的源码关系、构建边界和执行路径分析"
+    source_files: ["googletest/include/gtest/gtest.h", "googletest/src/gtest.cc"]
+    sections:
+      - id: googletest_runtime_dispatch_main
+        title: "RUN_ALL_TESTS 执行链路"
+        description: "源码事实、派生关系和未执行事项分开标注"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: []
+  - id: googletest_fixtures_events_reporting
+    title: "Fixture、全局环境与事件报告"
+    filename: "05_Fixture全局环境与事件报告.md"
+    description: "基于冻结源码提交的源码关系、构建边界和执行路径分析"
+    source_files: ["googletest/src/gtest.cc"]
+    sections:
+      - id: googletest_fixtures_events_reporting_main
+        title: "Fixture、全局环境与事件报告"
+        description: "源码事实、派生关系和未执行事项分开标注"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: []
+  - id: googletest_build_test_matrix_gmock
+    title: "GoogleMock 集成与项目自测目标"
+    filename: "06_GoogleMock集成与项目自测目标.md"
+    description: "基于冻结源码提交的源码关系、构建边界和执行路径分析"
+    source_files: ["googlemock/src/gmock.cc", "googletest/CMakeLists.txt", "googlemock/CMakeLists.txt", "googletest/test/BUILD.bazel"]
+    sections:
+      - id: googletest_build_test_matrix_gmock_main
+        title: "GoogleMock 集成与项目自测目标"
+        description: "源码事实、派生关系和未执行事项分开标注"
+        autogen: true
+        diagrams_needed: true
+        diagram_types: ["flowchart"]
+    related_pages: []
+notes:
+  - "本次固定源码提交为 5feffc24e4d6c49608d241d53cacb2c8143d2beb，来自 test 分支，不跟随默认分支 main。"
+  - "本轮采用单 agent 顺序分析与第二遍源码复核；没有声称使用并行 subagent。"
+  - "实际 CMake/Bazel 构建与 Mermaid.js/CLI 渲染未执行，详见报告。"
